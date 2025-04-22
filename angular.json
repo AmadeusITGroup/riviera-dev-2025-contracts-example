@@ -91,6 +91,128 @@
           }
         }
       }
+    },
+    "with-contracts": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        },
+        "@o3r/core:component": {
+          "path": "apps/with-contracts/src/components"
+        },
+        "@o3r/core:page": {
+          "path": "apps/with-contracts/src/app"
+        },
+        "@o3r/core:service": {
+          "path": "apps/with-contracts/src/services"
+        },
+        "@o3r/core:store": {
+          "path": "apps/with-contracts/src/store"
+        },
+        "@o3r/core:schematics-update": {
+          "path": "apps/with-contracts/src/schematics"
+        },
+        "@o3r/testing:playwright-scenario": {
+          "path": "apps/with-contracts/e2e-playwright/scenarios"
+        },
+        "@o3r/testing:playwright-sanity": {
+          "path": "apps/with-contracts/e2e-playwright/sanity"
+        }
+      },
+      "root": "apps/with-contracts",
+      "sourceRoot": "apps/with-contracts/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": "apps/with-contracts/dist",
+            "index": "apps/with-contracts/src/index.html",
+            "browser": "apps/with-contracts/src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "apps/with-contracts/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "apps/with-contracts/public"
+              }
+            ],
+            "styles": [
+              "apps/with-contracts/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "fileReplacements": [
+                {
+                  "replace": "apps/with-contracts/src/environments/environment.ts",
+                  "with": "apps/with-contracts/src/environments/environment.development.ts"
+                }
+              ]
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "with-contracts:build:production"
+            },
+            "development": {
+              "buildTarget": "with-contracts:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "apps/with-contracts/tsconfig.spec.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "apps/with-contracts/public"
+              }
+            ],
+            "styles": [
+              "apps/with-contracts/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        }
+      }
     }
   },
   "schematics": {
@@ -100,13 +222,23 @@
     "*:*": {
       "libsDir": "libs",
       "appsDir": "apps"
-    }
+    },
+    "@o3r/workspace:ng-add": {
+      "skipVscodeTools": true,
+      "skipRenovate": true,
+      "skipPreCommitChecks": true
+    },
+    "@o3r/core:component": {},
+    "@o3r/core:component-container": {},
+    "@o3r/core:component-presenter": {}
   },
   "cli": {
     "schematicCollections": [
+      "@o3r/testing",
       "@o3r/workspace",
       "@o3r/core",
       "@schematics/angular"
-    ]
+    ],
+    "analytics": false
   }
 }

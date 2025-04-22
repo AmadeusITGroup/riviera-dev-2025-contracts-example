@@ -2,6 +2,7 @@
   "recommendations": [
     "angular.ng-template",
     "AmadeusITGroup.otter-devtools",
-    "EditorConfig.EditorConfig"
+    "EditorConfig.EditorConfig",
+    "Orta.vscode-jest"
   ]
 }
