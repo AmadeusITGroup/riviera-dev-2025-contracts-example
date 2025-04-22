@@ -1,0 +1,9 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "github>AmadeusITGroup/otter//tools/renovate/base#v12.1.8",
+    "github>AmadeusITGroup/otter//tools/renovate/group/otter#v12.1.8",
+    "github>AmadeusITGroup/otter//tools/renovate/tasks/base#v12.1.8",
+    "github>AmadeusITGroup/otter//tools/renovate/tasks/otter-ng-update#v12.1.8(npm)"
+  ]
+}

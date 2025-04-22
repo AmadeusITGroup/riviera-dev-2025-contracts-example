@@ -1,0 +1,68 @@
+{
+  "name": "todolist",
+  "version": "0.0.0-placeholder",
+  "scripts": {
+    "ng": "ng",
+    "build": "lerna run build",
+    "test": "lerna run test",
+    "lint": "lerna run lint",
+    "prepare": "husky"
+  },
+  "private": true,
+  "dependencies": {
+    "@ama-sdk/core": "~12.1.8",
+    "@ama-sdk/schematics": "~12.1.8",
+    "@angular/common": "~19.2.0",
+    "@angular/compiler": "~19.2.0",
+    "@angular/core": "~19.2.0",
+    "@angular/forms": "~19.2.0",
+    "@angular/platform-browser": "~19.2.0",
+    "@angular/platform-browser-dynamic": "~19.2.0",
+    "@angular/router": "~19.2.0",
+    "@o3r/core": "~12.1.8",
+    "@o3r/workspace": "~12.1.8",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.15.0"
+  },
+  "devDependencies": {
+    "@angular-devkit/architect": "~0.1902.0",
+    "@angular-devkit/core": "~19.2.0",
+    "@angular-devkit/schematics": "~19.2.0",
+    "@angular/cli": "~19.2.8",
+    "@angular/compiler-cli": "~19.2.0",
+    "@commitlint/cli": "~19.0.0",
+    "@commitlint/config-angular": "~19.0.0",
+    "@commitlint/config-conventional": "~19.0.0",
+    "@commitlint/types": "~19.0.0",
+    "@o3r/schematics": "^12.1.8",
+    "@o3r/telemetry": "~12.1.8",
+    "@schematics/angular": "~19.2.0",
+    "@types/jasmine": "~5.1.0",
+    "editorconfig-checker": "~6.0.1",
+    "husky": "~9.1.0",
+    "jasmine-core": "~5.6.0",
+    "karma": "~6.4.0",
+    "karma-chrome-launcher": "~3.2.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.1.0",
+    "lint-staged": "~15.0.0",
+    "typescript": "~5.7.2",
+    "lerna": "^8.1.7"
+  },
+  "config": {
+    "o3r": {
+      "telemetry": true
+    }
+  },
+  "lint-staged": {
+    "*": [
+      "editorconfig-checker --verbose"
+    ]
+  },
+  "workspaces": [
+    "libs/*",
+    "apps/*"
+  ]
+}

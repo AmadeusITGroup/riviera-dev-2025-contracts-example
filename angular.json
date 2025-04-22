@@ -1,0 +1,22 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {},
+  "schematics": {
+    "*:ng-add": {
+      "registerDevtool": true
+    },
+    "*:*": {
+      "libsDir": "libs",
+      "appsDir": "apps"
+    }
+  },
+  "cli": {
+    "schematicCollections": [
+      "@o3r/workspace",
+      "@o3r/core",
+      "@schematics/angular"
+    ]
+  }
+}
