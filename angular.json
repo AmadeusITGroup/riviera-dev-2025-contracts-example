@@ -16,9 +16,7 @@
             "outputPath": "dist/without-contracts",
             "index": "apps/without-contracts/src/index.html",
             "browser": "apps/without-contracts/src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js", "@angular/localize/init"],
             "tsConfig": "apps/without-contracts/tsconfig.app.json",
             "assets": [
               {
@@ -130,9 +128,7 @@
             "outputPath": "apps/with-contracts/dist",
             "index": "apps/with-contracts/src/index.html",
             "browser": "apps/with-contracts/src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js", "@angular/localize/init"],
             "tsConfig": "apps/with-contracts/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [

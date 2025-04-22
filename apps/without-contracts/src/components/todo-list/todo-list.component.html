@@ -1,0 +1,26 @@
+
+@if (items().length > 0) {
+  @if (remainingItems().length === 0) {
+    <ngb-alert class="w-100" dfInsertAlertIcon type="success" [dismissible]="false">
+      All items are completed
+    </ngb-alert>
+  } @else {
+    <ngb-alert class="w-100" dfInsertAlertIcon type="info" [dismissible]="false">
+      {{ remainingItems().length }} item(s) in the todo list not completed
+    </ngb-alert>
+  }
+  <ul class="list-group-flush d-flex flex-column align-items-center w-100 p-0">
+    @for(item of items(); track item.label) {
+      <li class="list-group-item w-100">
+        <app-todo-item
+          [item]="item"
+          (toggleItem)="toggleItem.emit(item)"
+          (removeItem)="removeItem.emit(item)" />
+      </li>
+    }
+  </ul>
+} @else {
+  <ngb-alert class="w-100" dfInsertAlertIcon type="info" [dismissible]="false">
+    No items in the todo list
+  </ngb-alert>
+}

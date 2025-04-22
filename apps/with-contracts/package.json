@@ -3,9 +3,9 @@
   "version": "0.0.0-placeholder",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
+    "start": "ng serve with-contracts",
+    "build": "ng build with-contracts",
+    "watch": "ng build with-contracts --watch --configuration development",
     "update:otter": "ng update @o3r/core"
   },
   "private": true,
