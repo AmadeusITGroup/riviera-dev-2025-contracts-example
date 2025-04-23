@@ -1,0 +1,103 @@
+openapi: 3.0.0
+paths:
+  /todo:
+    post:
+      operationId: TodoController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTodoDto'
+      responses:
+        '201':
+          description: The record has been successfully created.
+        '409':
+          description: The record already exists.
+      tags: &ref_0
+        - Todo
+    get:
+      operationId: TodoController_findAll
+      parameters: []
+      responses:
+        '200':
+          description: The records has been successfully retrieved.
+      tags: *ref_0
+  /todo/{id}:
+    get:
+      operationId: TodoController_findOne
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: number
+      responses:
+        '200':
+          description: The record has been successfully retrieved.
+        '404':
+          description: The record was not found.
+      tags: *ref_0
+    patch:
+      operationId: TodoController_update
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: number
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTodoDto'
+      responses:
+        '200':
+          description: The record has been successfully updated.
+        '404':
+          description: The item was not found.
+      tags: *ref_0
+    delete:
+      operationId: TodoController_remove
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: number
+      responses:
+        '200':
+          description: The record has been successfully deleted.
+        '404':
+          description: The item was not found.
+      tags: *ref_0
+info:
+  title: Todo list
+  description: The todo API description
+  version: '1.0'
+  contact: {}
+tags:
+  - name: todos
+    description: ''
+servers: []
+components:
+  schemas:
+    CreateTodoDto:
+      type: object
+      properties:
+        title:
+          type: string
+          description: The title of the todo item
+          example: Buy groceries
+      description: Object for creating a todo item
+      required:
+        - title
+    UpdateTodoDto:
+      type: object
+      properties:
+        isCompleted:
+          type: boolean
+          description: Is the todo item completed?
+      description: Object for updating a todo item

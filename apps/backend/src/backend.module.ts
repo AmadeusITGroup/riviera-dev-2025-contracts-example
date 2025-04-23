@@ -1,10 +1,7 @@
 import { Module } from '@nestjs/common';
-import { BackendController } from './backend.controller';
-import { BackendService } from './backend.service';
+import { TodoModule } from './todo/todo.module';
 
 @Module({
-  imports: [],
-  controllers: [BackendController],
-  providers: [BackendService],
+  imports: [TodoModule],
 })
 export class BackendModule {}
