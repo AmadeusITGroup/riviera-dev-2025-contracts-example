@@ -15,7 +15,8 @@
     "target": "ES2022",
     "module": "ES2022",
     "declaration": true,
-    "paths": {}
+    "paths": {},
+    "baseUrl": "./"
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

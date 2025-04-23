@@ -3,6 +3,8 @@
   "version": "0.0.0-placeholder",
   "scripts": {
     "ng": "ng",
+    "nest": "nest",
+    "start": "lerna run start",
     "build": "lerna run build",
     "test": "lerna run test",
     "lint": "lerna run lint",
@@ -53,6 +55,7 @@
     "@commitlint/config-angular": "~19.0.0",
     "@commitlint/config-conventional": "~19.0.0",
     "@commitlint/types": "~19.0.0",
+    "@nestjs/cli": "~11.0.6",
     "@o3r/schematics": "^12.1.8",
     "@o3r/telemetry": "~12.1.8",
     "@o3r/testing": "~12.1.8",
@@ -77,6 +80,7 @@
     "lint-staged": "~15.0.0",
     "pixelmatch": "~6.0.0",
     "pngjs": "~7.0.0",
+    "ts-loader": "~9.5.2",
     "ts-jest": "~29.2.5",
     "typescript": "~5.7.2"
   },
