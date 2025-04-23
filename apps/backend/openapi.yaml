@@ -1,6 +1,6 @@
 openapi: 3.0.0
 paths:
-  /todo:
+  /todos:
     post:
       operationId: TodoController_create
       parameters: []
@@ -24,7 +24,7 @@ paths:
         '200':
           description: The records has been successfully retrieved.
       tags: *ref_0
-  /todo/{id}:
+  /todos/{id}:
     get:
       operationId: TodoController_findOne
       parameters:

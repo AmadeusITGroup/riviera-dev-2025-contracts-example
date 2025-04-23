@@ -9,8 +9,8 @@
       {{ remainingItems().length }} item(s) in the todo list not completed
     </ngb-alert>
   }
-  <ul class="list-group-flush d-flex flex-column align-items-center w-100 p-0">
-    @for(item of items(); track item.label) {
+  <ul class="list-group-flush d-flex flex-column align-items-center w-100 p-0 gap-3">
+    @for(item of items(); track item.id) {
       <li class="list-group-item w-100">
         <app-todo-item
           [item]="item"

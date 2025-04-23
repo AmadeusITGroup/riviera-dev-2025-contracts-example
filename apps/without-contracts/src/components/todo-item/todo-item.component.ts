@@ -1,13 +1,15 @@
 import { ChangeDetectionStrategy, Component, input, output, ViewEncapsulation } from '@angular/core';
+import { DfTooltipModule } from '@design-factory/design-factory';
 
 export interface TodoItem {
-  label: string;
+  id: number;
+  title: string;
   isCompleted: boolean;
 }
 
 @Component({
   selector: 'app-todo-item',
-  imports: [],
+  imports: [DfTooltipModule],
   templateUrl: './todo-item.template.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush

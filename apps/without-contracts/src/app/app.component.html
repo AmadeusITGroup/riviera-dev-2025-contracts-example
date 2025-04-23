@@ -1,21 +1,26 @@
 <h1 class="d-flex justify-content-center">Todo List</h1>
-<app-todo-list
-  [items]="items()"
-  (toggleItem)="toggleItem($event)"
-  (removeItem)="removeItem($event)" />
-<form class="mb-3">
-  <div class="row">
-    <div class="col-sm-8">
-      <input aria-labelledby="newItem" type="text" class="form-control" name="newItem" id="newItem" [(ngModel)]="newItem" />
-    </div>
-    <button class="col-sm-4 btn btn-primary" type="submit" (click)="addItem()">
-      <span class="fa fa-plus pe-2" aria-hidden="true"></span>
-      <span id="newItem">Add item</span>
-    </button>
-  </div>
-</form>
 @for (alert of alerts(); track alert) {
   <ngb-alert dfInsertAlertIcon type="danger" (closed)="closeAlert(alert)">
     {{ alert }}
   </ngb-alert>
+}
+@if (items.hasValue()) {
+  <app-todo-list
+    [items]="items.value()"
+    (toggleItem)="toggleItem($event)"
+    (removeItem)="removeItem($event)" />
+
+  <form class="mb-3">
+    <div class="row">
+      <div class="col-sm-8">
+        <input aria-labelledby="newItem" type="text" class="form-control" name="newItem" id="newItem" [(ngModel)]="newItem" />
+      </div>
+      <div class="col-sm-4">
+        <button class="w-100 btn btn-primary" type="submit" (click)="addItem()">
+          <span class="fa fa-plus pe-2" aria-hidden="true"></span>
+          <span id="newItem">Add item</span>
+        </button>
+      </div>
+    </div>
+  </form>
 }

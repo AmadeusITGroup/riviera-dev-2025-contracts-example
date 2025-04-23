@@ -5,7 +5,7 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { BackendModule } from './backend.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create(BackendModule);
+  const app = await NestFactory.create(BackendModule, { cors: { origin: ['http://localhost:4200', 'http://locahost:4300'] } });
 
   const config = new DocumentBuilder()
     .setTitle('Todo list')

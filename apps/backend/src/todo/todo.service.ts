@@ -8,6 +8,9 @@ export class TodoService {
   private readonly todos: Todo[] = [];
 
   create(createTodoDto: CreateTodoDto) {
+    if (this.todos.find(todo => todo.title === createTodoDto.title)) {
+      return;
+    }
     const newTodo: Todo = {
       ...createTodoDto,
       id: this.todos.length + 1,

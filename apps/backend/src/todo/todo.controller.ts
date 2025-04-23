@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, NotFoundException } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, NotFoundException, ConflictException, NotImplementedException } from '@nestjs/common';
 import { TodoService } from './todo.service';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { UpdateTodoDto } from './dto/update-todo.dto';
@@ -10,7 +10,7 @@ export class NotFoundTodoException extends NotFoundException {
   }
 }
 
-@Controller('todo')
+@Controller('todos')
 export class TodoController {
   constructor(private readonly todoService: TodoService) {}
 
@@ -22,6 +22,10 @@ export class TodoController {
     description: 'The record already exists.',
   })
   create(@Body() createTodoDto: CreateTodoDto) {
+    const todoItem = this.todoService.create(createTodoDto);
+    if (!todoItem) {
+      throw new ConflictException(`Todo with title ${createTodoDto.title} already exists`);
+    }
     return this.todoService.create(createTodoDto);
   }
 
