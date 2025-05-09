@@ -15,6 +15,7 @@ export class TodoService {
       ...createTodoDto,
       id: this.todos.length + 1,
       isCompleted: false,
+      createdAt: Date.now(),
     };
     this.todos.push(newTodo);
     return newTodo;

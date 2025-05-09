@@ -1,4 +1,4 @@
-import { ApiProperty, ApiSchema } from "@nestjs/swagger";
+import { ApiProperty, ApiPropertyOptional, ApiSchema } from "@nestjs/swagger";
 
 @ApiSchema({
   name: 'CreateTodoDto',
@@ -10,4 +10,21 @@ export class CreateTodoDto {
     example: 'Buy groceries',
   })
   title!: string;
+
+  @ApiPropertyOptional({
+    description: 'The due date of the todo item',
+  })
+  dueDate?: number;
+
+
+  @ApiPropertyOptional({
+    description: 'Is the todo item completed?',
+  })
+  isCompleted?: boolean;
+
+
+  @ApiPropertyOptional({
+    description: 'Assigned user to the todo item',
+  })
+  assignedTo?: string;
 }

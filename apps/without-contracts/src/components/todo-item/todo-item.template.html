@@ -1,6 +1,22 @@
 <div class="card flex-row justify-content-between align-items-center gap-3 px-6 py-3">
   <input type="checkbox" [checked]="item().isCompleted" (change)="toggleItem.emit()" />
-  <span class="flex-fill" [class.text-decoration-line-through]="item().isCompleted">{{ item().title }}</span>
+  <div class="text-fill d-flex flex-column w-100" [class.text-decoration-line-through]="item().isCompleted">
+    <span class="flex-fill">{{ item().title }}</span>
+    <div class="d-flex gap-3 flex-wrap space-between fs-6">
+      <span>
+        Due date:
+        {{ (item().dueDate | date) || '-'}}
+      </span>
+      <span>
+        Created at:
+        {{ item().createdAt | date }}
+      </span>
+      <span>
+        Assigned to:
+        {{ (item().assignedTo | titlecase) || '-' }}
+      </span>
+    </div>
+  </div>
   <button
     (click)="removeItem.emit()"
     type="button"

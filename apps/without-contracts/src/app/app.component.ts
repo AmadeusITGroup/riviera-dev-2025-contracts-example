@@ -15,7 +15,7 @@ export class AppComponent {
   private readonly httpClient = inject(HttpClient);
   public readonly newItem = signal('');
   public readonly items = httpResource<TodoItem[]>({
-    url: 'http://localhost:3000/todos',
+    url: 'http://localhost:3000/todo',
     method: 'GET',
   })
   public readonly alerts = signal<string[]>([]);
@@ -31,7 +31,7 @@ export class AppComponent {
   }
 
   public addItem(): void {
-    this.httpClient.post('http://localhost:3000/todos', { title: this.newItem() }).subscribe({
+    this.httpClient.post('http://localhost:3000/todo', { title: this.newItem() }).subscribe({
       next: () => {
         this.items.reload();
         this.newItem.set('');
@@ -43,7 +43,7 @@ export class AppComponent {
   }
 
   public toggleItem(item: TodoItem): void {
-    this.httpClient.patch(`http://localhost:3000/todos/${item.id}`, { isCompleted: !item.isCompleted }).subscribe({
+    this.httpClient.patch(`http://localhost:3000/todo/${item.id}`, { isCompleted: !item.isCompleted }).subscribe({
       next: () => {
         this.items.reload();
       },
@@ -54,7 +54,7 @@ export class AppComponent {
   }
 
   public removeItem(item: TodoItem): void {
-    this.httpClient.delete(`http://localhost:3000/todos/${item.id}`).subscribe({
+    this.httpClient.delete(`http://localhost:3000/todo/${item.id}`).subscribe({
       next: () => {
         this.items.reload();
       },

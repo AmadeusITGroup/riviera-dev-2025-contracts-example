@@ -3,6 +3,8 @@ import { TodoService } from './todo.service';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { UpdateTodoDto } from './dto/update-todo.dto';
 import { ApiConflictResponse, ApiCreatedResponse, ApiNotFoundResponse, ApiOkResponse } from '@nestjs/swagger';
+import { UserService } from '../user/user.service';
+import { NotFoundUserException } from '../user/user.controller';
 
 export class NotFoundTodoException extends NotFoundException {
   constructor(id: number) {
@@ -10,9 +12,9 @@ export class NotFoundTodoException extends NotFoundException {
   }
 }
 
-@Controller('todos')
+@Controller('todo')
 export class TodoController {
-  constructor(private readonly todoService: TodoService) {}
+  constructor(private readonly todoService: TodoService, private readonly userService: UserService) {}
 
   @Post()
   @ApiCreatedResponse({
@@ -25,6 +27,9 @@ export class TodoController {
     const todoItem = this.todoService.create(createTodoDto);
     if (!todoItem) {
       throw new ConflictException(`Todo with title ${createTodoDto.title} already exists`);
+    }
+    if (createTodoDto.assignedTo && !this.userService.findOne(createTodoDto.assignedTo)) {
+      throw new NotFoundUserException(createTodoDto.assignedTo);
     }
     return this.todoService.create(createTodoDto);
   }
@@ -52,6 +57,21 @@ export class TodoController {
     return todoItem;
   }
 
+  @Get(':id/user')
+  @ApiNotFoundResponse({
+    description: 'The record was not found.',
+  })
+  @ApiOkResponse({
+    description: 'The record has been successfully retrieved.',
+  })
+  findAssignedTo(@Param('id') id: number) {
+    const todoItem = this.todoService.findOne(+id);
+    if (!todoItem) {
+      throw new NotFoundTodoException(id);
+    }
+    return todoItem.assignedTo ? this.userService.findOne(todoItem.assignedTo) : undefined;
+  }
+
   @Patch(':id')
   @ApiNotFoundResponse({
     description: 'The item was not found.',
@@ -60,11 +80,14 @@ export class TodoController {
     description: 'The record has been successfully updated.',
   })
   update(@Param('id') id: number, @Body() updateTodoDto: UpdateTodoDto) {
-    const todoItem = this.todoService.update(+id, updateTodoDto);
+    const todoItem = this.todoService.findOne(+id);
     if (!todoItem) {
       throw new NotFoundTodoException(id);
     }
-    return todoItem;
+    if (updateTodoDto.assignedTo && !this.userService.findOne(updateTodoDto.assignedTo)) {
+      throw new NotFoundUserException(updateTodoDto.assignedTo);
+    }
+    return this.todoService.update(+id, updateTodoDto);
   }
 
   @Delete(':id')
@@ -75,10 +98,10 @@ export class TodoController {
     description: 'The record has been successfully deleted.',
   })
   remove(@Param('id') id: number) {
-    const removedItem = this.todoService.remove(+id);
-    if (!removedItem) {
+    const todoItem = this.todoService.findOne(+id);
+    if (!todoItem) {
       throw new NotFoundTodoException(id);
     }
-    return removedItem;
+    return this.todoService.remove(+id);
   }
 }

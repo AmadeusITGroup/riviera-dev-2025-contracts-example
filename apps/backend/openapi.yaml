@@ -1,6 +1,6 @@
 openapi: 3.0.0
 paths:
-  /todos:
+  /todo:
     post:
       operationId: TodoController_create
       parameters: []
@@ -24,7 +24,7 @@ paths:
         '200':
           description: The records has been successfully retrieved.
       tags: *ref_0
-  /todos/{id}:
+  /todo/{id}:
     get:
       operationId: TodoController_findOne
       parameters:
@@ -73,6 +73,94 @@ paths:
         '404':
           description: The item was not found.
       tags: *ref_0
+  /todo/{id}/user:
+    get:
+      operationId: TodoController_findAssignedTo
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: number
+      responses:
+        '200':
+          description: The record has been successfully retrieved.
+        '404':
+          description: The record was not found.
+      tags: *ref_0
+  /user:
+    post:
+      operationId: UserController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserDto'
+      responses:
+        '201':
+          description: The record has been successfully created.
+        '409':
+          description: The record already exists.
+      tags: &ref_1
+        - User
+    get:
+      operationId: UserController_findAll
+      parameters: []
+      responses:
+        '200':
+          description: The records has been successfully retrieved.
+      tags: *ref_1
+  /user/{username}:
+    get:
+      operationId: UserController_findOne
+      parameters:
+        - name: username
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The record has been successfully retrieved.
+        '404':
+          description: The record was not found.
+      tags: *ref_1
+    patch:
+      operationId: UserController_update
+      parameters:
+        - name: username
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserDto'
+      responses:
+        '200':
+          description: The record has been successfully updated.
+        '404':
+          description: The item was not found.
+      tags: *ref_1
+    delete:
+      operationId: UserController_remove
+      parameters:
+        - name: username
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The record has been successfully deleted.
+        '404':
+          description: The item was not found.
+      tags: *ref_1
 info:
   title: Todo list
   description: The todo API description
@@ -91,13 +179,38 @@ components:
           type: string
           description: The title of the todo item
           example: Buy groceries
+        dueDate:
+          type: number
+          description: The due date of the todo item
+        isCompleted:
+          type: boolean
+          description: Is the todo item completed?
+        assignedTo:
+          type: string
+          description: Assigned user to the todo item
       description: Object for creating a todo item
       required:
         - title
     UpdateTodoDto:
       type: object
-      properties:
-        isCompleted:
-          type: boolean
-          description: Is the todo item completed?
+      properties: {}
       description: Object for updating a todo item
+    CreateUserDto:
+      type: object
+      properties:
+        username:
+          type: string
+          description: The username of the user
+          example: jdoe
+          uniqueItems: true
+      description: Object for creating a user
+      required:
+        - username
+    UpdateUserDto:
+      type: object
+      properties:
+        username:
+          type: string
+          description: The username of the user
+          example: jdoe
+          uniqueItems: true
