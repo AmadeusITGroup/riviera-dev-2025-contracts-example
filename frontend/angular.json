@@ -42,7 +42,8 @@
             "index": "apps/todo-ui/src/index.html",
             "browser": "apps/todo-ui/src/main.ts",
             "polyfills": [
-              "zone.js"
+              "zone.js",
+              "@angular/localize/init"
             ],
             "tsConfig": "apps/todo-ui/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
@@ -121,6 +122,32 @@
               "apps/todo-ui/src/styles.scss"
             ],
             "scripts": []
+          }
+        }
+      }
+    },
+    "todo-sdk": {
+      "projectType": "library",
+      "root": "libs/todo-sdk",
+      "sourceRoot": "libs/todo-sdk/src",
+      "prefix": "sdk",
+      "architect": {
+        "build": {
+          "builder": "@o3r/core:run-script",
+          "options": {
+            "script": "build"
+          }
+        },
+        "lint": {
+          "builder": "@o3r/core:run-script",
+          "options": {
+            "script": "lint"
+          }
+        },
+        "test": {
+          "builder": "@o3r/core:run-script",
+          "options": {
+            "script": "test"
           }
         }
       }

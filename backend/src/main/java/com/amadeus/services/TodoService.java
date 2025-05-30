@@ -26,9 +26,11 @@ public class TodoService {
         todo.setId(UUID.randomUUID().toString());
         todo.setCreatedAt(now);
         todo.setTitle(data.getTitle());
-        if (data.getUser() != null) todo.setUser(data.getUser());
-        if (data.getDueDate() != null) todo.setDueDate(data.getDueDate());
-        if (data.getStatus() == TodoStatus.done) todo.setCompletedAt(now);
+        todo.setUser(data.getUser());
+        todo.setDueDate(data.getDueDate());
+        if (data.getStatus() == TodoStatus.done) {
+            todo.setCompletedAt(now);
+        }
         todo.setStatus(data.getStatus() != null ? data.getStatus() : TodoStatus.on_hold);
         TODOS.put(todo.getId(), todo);
         return todo;
@@ -37,10 +39,15 @@ public class TodoService {
     public Todo updateTodo(String todoId, com.amadeus.todo.beans.@NotNull BaseTodo data) {
         Todo todo = TODOS.get(todoId);
         if (todo == null)  throw new NotFoundException("Todo with ID " + todoId + " not found");
-        if (data.getStatus() == TodoStatus.done) todo.setCompletedAt(new Date());
-        if (data.getTitle() != null) todo.setTitle(data.getTitle());
-        if (data.getUser() != null) todo.setUser(data.getUser());
-        if (data.getDueDate() != null) todo.setDueDate(data.getDueDate());
+        if (todo.getStatus() == TodoStatus.done && data.getStatus() != TodoStatus.done) {
+            todo.setCompletedAt(null);
+        }
+        if (data.getStatus() == TodoStatus.done) {
+            todo.setCompletedAt(new Date());
+        }
+        todo.setTitle(data.getTitle());
+        todo.setUser(data.getUser());
+        todo.setDueDate(data.getDueDate());
         todo.setStatus(data.getStatus() != null ? data.getStatus() : TodoStatus.on_hold);
         TODOS.put(todoId, todo);
         return todo;

@@ -38,7 +38,7 @@ public class UsersResourceImpl implements UsersResource {
     public User updateUser(String userId, @NotNull BaseUser data) {
         User user = USERS.get(userId);
         if (user == null) throw new NotFoundException("User with ID " + userId + " not found");
-        if (data.getName() != null) user.setName(data.getName());
+        user.setName(data.getName());
         USERS.put(userId, user);
         return user;
     }
@@ -47,10 +47,7 @@ public class UsersResourceImpl implements UsersResource {
     public void deleteUser(String userId) {
         User user = USERS.get(userId);
         if (user == null) throw new NotFoundException("User with ID " + userId + " not found");
-        todoService.getTodos(userId, null).forEach(todo -> {
-            todo.setUser(null);
-        });
+        todoService.getTodos(userId, null).forEach(todo -> todo.setUser(null));
         USERS.remove(userId);
     }
-
 }

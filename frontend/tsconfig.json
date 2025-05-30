@@ -15,7 +15,20 @@
     "target": "ES2022",
     "module": "ES2022",
     "declaration": true,
-    "paths": {}
+    "paths": {
+      "@todo-sdk/sdk": [
+        "libs/todo-sdk/dist",
+        "libs/todo-sdk/src/index"
+      ],
+      "@todo-sdk/sdk/fixtures": [
+        "libs/todo-sdk/src/fixtures/jest"
+      ],
+      "@todo-sdk/sdk/*": [
+        "libs/todo-sdk/dist/*",
+        "libs/todo-sdk/src/*"
+      ]
+    },
+    "baseUrl": "."
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
