@@ -1,0 +1,217 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "todo-ui": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        },
+        "@o3r/core:component": {
+          "path": "apps/todo-ui/src/components"
+        },
+        "@o3r/core:page": {
+          "path": "apps/todo-ui/src/app"
+        },
+        "@o3r/core:service": {
+          "path": "apps/todo-ui/src/services"
+        },
+        "@o3r/core:store": {
+          "path": "apps/todo-ui/src/store"
+        },
+        "@o3r/core:schematics-update": {
+          "path": "apps/todo-ui/src/schematics"
+        },
+        "@o3r/testing:playwright-scenario": {
+          "path": "apps/todo-ui/e2e-playwright/scenarios"
+        },
+        "@o3r/testing:playwright-sanity": {
+          "path": "apps/todo-ui/e2e-playwright/sanity"
+        }
+      },
+      "root": "apps/todo-ui",
+      "sourceRoot": "apps/todo-ui/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": "apps/todo-ui/dist",
+            "index": "apps/todo-ui/src/index.html",
+            "browser": "apps/todo-ui/src/main.ts",
+            "polyfills": [
+              "zone.js",
+              "@angular/localize/init"
+            ],
+            "tsConfig": "apps/todo-ui/tsconfig.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/todo-ui/src/assets",
+              {
+                "glob": "**/*",
+                "input": "apps/todo-ui/public"
+              },
+              {
+                "glob": "**/*.metadata.json",
+                "input": "../contracts/generated",
+                "output": "/metadata"
+              }
+            ],
+            "styles": [
+              "apps/todo-ui/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "3MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "fileReplacements": [
+                {
+                  "replace": "apps/todo-ui/src/environments/environment.ts",
+                  "with": "apps/todo-ui/src/environments/environment.development.ts"
+                }
+              ]
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "todo-ui:build:production"
+            },
+            "development": {
+              "buildTarget": "todo-ui:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n"
+        },
+        "extract-components": {
+          "builder": "@o3r/components:extractor",
+          "options": {
+            "tsConfig": "apps/todo-ui/tsconfig.json",
+            "configOutputFile": "../contracts/generated/component.config.metadata.json",
+            "componentOutputFile": "../contracts/generated/component.class.metadata.json",
+            "name": "todo-ui",
+            "libraries": [],
+            "exposedComponentSupport": true
+          }
+        },
+        "generate-translations": {
+          "builder": "@o3r/localization:localization",
+          "options": {
+            "browserTarget": "todo-ui:build",
+            "localizationExtracterTarget": "todo-ui:extract-translations",
+            "locales": [
+              "en-GB",
+              "fr-FR"
+            ],
+            "assets": [
+              "apps/todo-ui/src/**/i18n"
+            ],
+            "outputPath": "apps/todo-ui/public/localizations"
+          }
+        },
+        "extract-translations": {
+          "builder": "@o3r/localization:extractor",
+          "options": {
+            "tsConfig": "apps/todo-ui/tsconfig.json",
+            "libraries": [],
+            "outputFile": "../contracts/generated/localization.metadata.json",
+            "strictMode": true
+          }
+        },
+        "run": {
+          "builder": "@o3r/core:multi-watcher",
+          "options": {
+            "targets": [
+              "todo-ui:generate-translations",
+              "todo-ui:serve"
+            ]
+          }
+        },
+        "i18n": {
+          "builder": "@o3r/localization:i18n",
+          "options": {
+            "localizationConfigs": [
+              {
+                "localizationFiles": [
+                  "apps/todo-ui/src/**/*.localization.json"
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    "todo-sdk": {
+      "projectType": "library",
+      "root": "libs/todo-sdk",
+      "sourceRoot": "libs/todo-sdk/src",
+      "prefix": "sdk",
+      "architect": {
+        "generate": {
+          "builder": "@o3r/core:run-script",
+          "options": {
+            "script": "sdk:generate"
+          }
+        }
+      }
+    }
+  },
+  "schematics": {
+    "*:ng-add": {
+      "registerDevtool": true
+    },
+    "*:*": {
+      "libsDir": "libs",
+      "appsDir": "apps"
+    },
+    "@o3r/workspace:ng-add": {
+      "skipVscodeTools": true,
+      "skipRenovate": true,
+      "skipPreCommitChecks": true
+    },
+    "@o3r/core:component": {},
+    "@o3r/core:component-container": {},
+    "@o3r/core:component-presenter": {},
+    "@o3r/core:component*": {
+      "useLocalization": true
+    }
+  },
+  "cli": {
+    "schematicCollections": [
+      "@o3r/localization",
+      "@o3r/components",
+      "@o3r/configuration",
+      "@o3r/testing",
+      "@o3r/workspace",
+      "@o3r/core",
+      "@schematics/angular"
+    ],
+    "analytics": false
+  }
+}

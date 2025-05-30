@@ -1,0 +1,52 @@
+{
+  "color": {
+    "primary": {
+      "default": {
+        "$type": "color",
+        "$value": "violet"
+      }
+    },
+    "warn": {
+      "default": {
+        "$type": "color",
+        "$value": "#ff8838"
+      }
+    },
+    "success": {
+      "default": {
+        "$type": "color",
+        "$value": "#6dc354"
+      }
+    },
+    "danger": {
+      "default": {
+        "$type": "color",
+        "$value": "green"
+      }
+    },
+    "info": {
+      "default": {
+        "$type": "color",
+        "$value": "#0c66e1"
+      },
+      "background": {
+        "$type": "color",
+        "$value": "#ebf3ff"
+      }
+    }
+  },
+  "radius": {
+    "panel": {
+      "$type": "dimension",
+      "$value": "5.25px"
+    },
+    "form": {
+      "$type": "dimension",
+      "$value": "7px"
+    },
+    "button": {
+      "$type": "dimension",
+      "$value": "7px"
+    }
+  }
+}

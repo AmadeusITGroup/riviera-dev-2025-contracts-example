@@ -1,0 +1,40 @@
+@if (todos().length > 0) {
+  @if (remainingTodos().length === 0) {
+    <ngb-alert class="w-100" dfInsertAlertIcon type="success" [dismissible]="false">
+      {{ translations.allCompleted | o3rTranslate }}
+    </ngb-alert>
+  } @else {
+    <ngb-alert class="w-100" dfInsertAlertIcon type="info" [dismissible]="false">
+      {{ translations.remainingItems | o3rTranslate : { remainingItems: remainingTodos().length } }}
+    </ngb-alert>
+  }
+  @if (remainingTodos().length > 0) {
+    <ul class="list-group-flush d-flex flex-column align-items-center w-100 p-0 m-0 gap-3">
+      @for(todo of remainingTodos(); track todo.id) {
+        <li class="list-group-item w-100">
+          <app-todo-item
+            [todo]="todo"
+            (remove)="todoService.deleteTodo(todo.id)" />
+        </li>
+      }
+    </ul>
+  }
+  @if (doneTodos().length > 0 && remainingTodos().length > 0) {
+    <hr class="my-5 border border-dark" style="--df-border-style: dashed">
+  }
+  @if (doneTodos().length > 0) {
+    <ul class="list-group-flush d-flex flex-column align-items-center w-100 p-0 m-0 gap-3">
+      @for(todo of doneTodos(); track todo.id) {
+        <li class="list-group-item w-100">
+          <app-todo-item
+            [todo]="todo"
+            (remove)="todoService.deleteTodo(todo.id)" />
+        </li>
+      }
+    </ul>
+  }
+} @else {
+  <ngb-alert class="w-100" dfInsertAlertIcon type="info" [dismissible]="false">
+    {{ translations.noItems | o3rTranslate }}
+  </ngb-alert>
+}

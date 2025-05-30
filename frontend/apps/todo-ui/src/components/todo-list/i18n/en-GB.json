@@ -1,0 +1,5 @@
+{
+  "app-todo-list.allCompleted": "All items are completed",
+  "app-todo-list.noItems": "No items in the to-do list",
+  "app-todo-list.remainingItems": "{remainingItems, plural, =1{# item} other{# items}} in the to-do list not completed"
+}

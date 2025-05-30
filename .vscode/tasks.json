@@ -1,0 +1,91 @@
+{
+  // For more information, visit: https://go.microsoft.com/fwlink/?LinkId=733558
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "install-frontend",
+      "command": "npm",
+      "args": [
+        "install"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/frontend"
+      },
+      "group": "build"
+    },
+    {
+      "label": "build-java",
+      "command": "mvn",
+      "args": [
+        "clean",
+        "install"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/backend"
+      },
+      "group": "build"
+    },
+    {
+      "label": "generate-typescript-sdk",
+      "command": "npm",
+      "args": [
+        "run",
+        "-w", "@riviera-dev-contracts/todo-sdk",
+        "sdk:generate"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/frontend"
+      },
+      "group": "build",
+      "dependsOn": [
+        "install-frontend"
+      ]
+    },
+    {
+      "label": "backend",
+      "command": "./mvnw",
+      "args": [
+        "quarkus:dev",
+        "-pl",
+        "server"
+      ],
+      "isBackground": true,
+      "dependsOn": [
+        "build-java"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/backend"
+      }
+    },
+    {
+      "label": "theming",
+      "type": "npm",
+      "script": "start:theme",
+      "path": "frontend",
+      "dependsOn": [
+        "install-frontend"
+      ],
+      "isBackground": true
+    },
+    {
+      "label": "todo-ui",
+      "type": "npm",
+      "script": "start",
+      "path": "frontend",
+      "isBackground": true,
+      "dependsOn": [
+        "generate-typescript-sdk",
+        "install-frontend"
+      ]
+    },
+    {
+      "label": "todo-app",
+      "dependsOn": [
+        "todo-ui",
+        "theming",
+        "backend"
+      ],
+      "dependsOrder": "parallel"
+    }
+  ]
+}

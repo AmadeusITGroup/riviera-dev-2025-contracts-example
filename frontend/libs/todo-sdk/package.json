@@ -1,0 +1,90 @@
+{
+  "name": "@riviera-dev-contracts/todo-sdk",
+  "version": "0.0.0-placeholder",
+  "description": "TypeScript client SDK for the Todo application",
+  "source": "src/index.ts",
+  "main": "cjs/index.js",
+  "module": "esm2020/index.js",
+  "node": "cjs/index.js",
+  "types": "./index.d.ts",
+  "sideEffects": false,
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "main": "./cjs/index.js",
+      "module": "./esm2020/index.js",
+      "node": "./cjs/index.js",
+      "types": "./index.d.ts",
+      "import": "./esm2020/index.js",
+      "require": "./esm2020/index.js",
+      "default": "./esm2020/index.js"
+    }
+  },
+  "scripts": {
+    "sdk:generate": "schematics @ama-sdk/schematics:typescript-core --generator-key todo-sdk && amasdk-clear-index"
+  },
+  "dependencies": {
+    "@swc/helpers": "~0.5.0",
+    "tslib": "~2.6.2"
+  },
+  "peerDependenciesMeta": {
+    "isomorphic-fetch": {
+      "optional": true
+    },
+    "@ama-sdk/client-fetch": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@ama-sdk/client-fetch": "~12.2.5",
+    "@ama-sdk/core": "~12.2.5",
+    "@ama-sdk/schematics": "~12.2.5",
+    "@angular-devkit/core": "~19.2.0",
+    "@angular-devkit/schematics": "~19.2.0",
+    "@angular-devkit/schematics-cli": "~19.2.0",
+    "@angular/cli": "~19.2.0",
+    "@angular/compiler": "~19.2.0",
+    "@commitlint/cli": "~19.0.0",
+    "@commitlint/config-conventional": "~19.0.0",
+    "@o3r/eslint-config": "~12.2.5",
+    "@o3r/eslint-plugin": "~12.2.5",
+    "@o3r/schematics": "~12.2.5",
+    "@openapitools/openapi-generator-cli": "^2.20.2",
+    "@schematics/angular": "~19.2.0",
+    "@stylistic/eslint-plugin": "~3.1.0",
+    "@swc/cli": "~0.6.0",
+    "@swc/core": "~1.11.0",
+    "@types/jest": "~29.5.2",
+    "@types/node": "~20.0.0",
+    "@typescript-eslint/eslint-plugin": "~8.29.0",
+    "@typescript-eslint/parser": "~8.29.0",
+    "commit-and-tag-version": "~12.0.0",
+    "cpy-cli": "~5.0.0",
+    "globals": "~15.9.0",
+    "globby": "~11.1.0",
+    "isomorphic-fetch": "~3.0.0",
+    "jest": "~29.7.0",
+    "jest-junit": "~16.0.0",
+    "lint-staged": "^15.5.2",
+    "minimist": "~1.2.6",
+    "rimraf": "~6.0.1",
+    "rxjs": "~7.8.1",
+    "ts-jest": "~29.3.0",
+    "tsc-watch": "~6.0.4",
+    "typedoc": "~0.28.0",
+    "typescript": "~5.8.2",
+    "yaml-eslint-parser": "~1.2.2"
+  },
+  "peerDependencies": {
+    "@ama-sdk/client-fetch": "~12.2.5",
+    "@ama-sdk/core": "~12.2.5",
+    "isomorphic-fetch": "~3.0.0"
+  },
+  "engines": {
+    "node": "^20.11.1 || >=22.0.0",
+    "npm": "",
+    "yarn": ""
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Design Tokens",
+  "collections": {
+    "Main": {
+      "modes": {
+        "Mode 1": [
+          "Main.Mode 1.tokens.json"
+        ]
+      }
+    }
+  },
+  "styles": {}
+}
