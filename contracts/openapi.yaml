@@ -89,7 +89,7 @@ paths:
       tags:
         - todo
       description: Creates a new todo 
-      operationId: BaseTodo
+      operationId: createTodo
       requestBody:
         description: Todo to add
         required: true
@@ -116,15 +116,14 @@ paths:
       description: Returns all the todo
       operationId: getTodos
       parameters:
-        - name: filter
+        - name: user
           in: query
           schema:
-            type: object
-            properties:
-              user:
-                $ref: '#/components/schemas/Id'
-              status:
-                $ref: '#/components/schemas/TodoStatus'
+            $ref: '#/components/schemas/Id'
+        - name: status
+          in: query
+          schema:
+            $ref: '#/components/schemas/TodoStatus'
       responses:
         '200':
           description: Get todo's response 
