@@ -1,0 +1,296 @@
+openapi: 3.0.0
+
+info:
+  title: To-do API
+  description: OpenApi specification for a to-do API
+  version: 1.0.0
+
+components:
+  schemas:
+    Id:
+      type: string
+      description: Unique identifier
+    BaseUser:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the user
+      required:
+        - name
+    User:
+      allOf:
+        - $ref: '#/components/schemas/BaseUser'
+        - type: object
+          required:
+            - id
+          properties:
+            id:
+              $ref: '#/components/schemas/Id'
+    TodoStatus:
+      type: string
+      enum:
+        - on_hold
+        - working
+        - done
+      description: Status of the todo
+    BaseTodo:
+      type: object
+      properties:
+        user:
+          type: string
+          description: ID of the user who owns the todo
+        dueDate:
+          type: number
+          format: date-time
+          description: Due date timestamp of the todo
+        title:
+          type: string
+          description: Title of the todo
+        status:
+          $ref: '#/components/schemas/TodoStatus'
+      required:
+        - title
+    Todo:
+      allOf:
+        - $ref: '#/components/schemas/BaseTodo'
+        - type: object
+          required:
+            - id
+            - createdAt
+          properties:
+            id:
+              $ref: '#/components/schemas/Id'
+            createdAt:
+              type: number
+              format: date-time
+              description: Creation timestamp of the todo
+            completedAt:
+              type: number
+              format: date-time
+              description: Completion timestamp of the todo
+
+    Error:
+      type: object
+      properties:
+        code:
+          type: number
+          description: Error code
+        message:
+          type: string
+          description: Error message
+      required:
+        - code
+        - message
+
+paths:
+  /todos:
+    post:
+      tags:
+        - todo
+      description: Creates a new todo 
+      operationId: BaseTodo
+      requestBody:
+        description: Todo to add
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BaseTodo'
+      responses:
+        '201': 
+          description: Todo creation response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Todo'
+        default:
+          description: Unexpected error 
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    get:
+      tags:
+        - todo
+      description: Returns all the todo
+      operationId: getTodos
+      parameters:
+        - name: filter
+          in: query
+          schema:
+            type: object
+            properties:
+              user:
+                $ref: '#/components/schemas/Id'
+              status:
+                $ref: '#/components/schemas/TodoStatus'
+      responses:
+        '200':
+          description: Get todo's response 
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Todo'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /todos/{todoId}:
+    put:
+      tags:
+        - todo
+      description: Updates the status of a todo
+      operationId: updateTodo
+      parameters:
+        - name: todoId
+          in: path 
+          description: Id of the todo 
+          required: true
+          schema:
+            $ref: '#/components/schemas/Id'
+      requestBody:
+        description: Status of the todo
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BaseTodo'
+      responses:
+        '200':
+          description: Todo update response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Todo'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      tags:
+        - todo
+      description: Delete a todo
+      operationId: deleteTodo
+      parameters:
+        - name: todoId
+          in: path
+          description: Id of the todo
+          required: true
+          schema:
+            $ref: '#/components/schemas/Id'
+      responses:
+        '204':
+          description: No content
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /users:
+    post:
+      tags:
+        - user
+      description: Creates a new user
+      operationId: createUser
+      requestBody:
+        description: User to add
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BaseUser'
+      responses:
+        '201':
+          description: User creation response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    get:
+      tags:
+        - user
+      description: Returns all the users
+      operationId: getUsers
+      responses:
+        '200':
+          description: Get users response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /users/{userId}:
+    put:
+      tags:
+        - user
+      description: Updates a user
+      operationId: updateUser
+      parameters:
+        - name: userId
+          in: path
+          description: Id of the user
+          required: true
+          schema:
+            $ref: '#/components/schemas/Id'
+      requestBody:
+        description: User to update
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BaseUser'
+      responses:
+        '200':
+          description: User update response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      tags:
+        - user
+      description: Deletes a user
+      operationId: deleteUser
+      parameters:
+        - name: userId
+          in: path
+          description: Id of the user
+          required: true
+          schema:
+            $ref: '#/components/schemas/Id'
+      responses:
+        '204':
+          description: No content
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
