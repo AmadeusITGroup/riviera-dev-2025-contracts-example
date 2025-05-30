@@ -1,0 +1,28 @@
+<header class="df-superheader bg-white mb-5">
+  <h1 class="d-flex justify-content-center">
+    {{ translations.pageTitle | o3rTranslate }}
+  </h1>
+</header>
+<section class="container">
+  @for (alert of alertService.alerts(); track alert) {
+    <ngb-alert dfInsertAlertIcon type="danger" (closed)="alertService.remove(alert)">
+      {{ alert }}
+    </ngb-alert>
+  }
+  @if (todoService.todos(); as todos) {
+    <form class="mb-3">
+      <div class="row g-2">
+        <div class="col-sm-8">
+          <input aria-labelledby="newItem" type="text" class="form-control" name="newItem" id="newItem" [(ngModel)]="newItem" />
+        </div>
+        <div class="col-sm-4">
+          <button class="w-100 btn btn-primary" type="submit" (click)="todoService.addTodo(newItem());newItem.set('')">
+            <span class="fa fa-plus pe-2" aria-hidden="true"></span>
+            <span id="newItem">{{ translations.addNewItem | o3rTranslate }}</span>
+          </button>
+        </div>
+      </div>
+    </form>
+    <app-todo-list [todos]="todos" />
+  }
+</section>

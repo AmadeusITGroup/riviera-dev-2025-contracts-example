@@ -1,0 +1,19 @@
+[
+  {
+    "library": "todo-ui",
+    "name": "TodoItemConfig",
+    "description": "Configuration for TodoItem component",
+    "path": "apps\\todo-ui\\src\\components\\todo-item\\todo-item.config.ts",
+    "type": "EXPOSED_COMPONENT",
+    "properties": [
+      {
+        "description": "Display side border on the right mode for the Todo item status",
+        "restrictionKeys": [],
+        "label": "side Border Mode",
+        "name": "sideBorderMode",
+        "type": "boolean",
+        "value": "false"
+      }
+    ]
+  }
+]

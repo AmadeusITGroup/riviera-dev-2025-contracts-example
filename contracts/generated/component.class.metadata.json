@@ -1,0 +1,64 @@
+[
+  {
+    "library": "todo-ui",
+    "name": "AppComponent",
+    "path": "apps\\todo-ui\\src\\app\\app.component.ts",
+    "selector": "app-root",
+    "type": "PAGE",
+    "linkableToRuleset": false,
+    "localizationKeys": [
+      "$schema",
+      "app-root.addNewItem",
+      "app-root.pageTitle"
+    ]
+  },
+  {
+    "library": "todo-ui",
+    "name": "TodoListComponent",
+    "path": "apps\\todo-ui\\src\\components\\todo-list\\todo-list.component.ts",
+    "selector": "app-todo-list",
+    "type": "COMPONENT",
+    "linkableToRuleset": false,
+    "localizationKeys": [
+      "$schema",
+      "app-todo-list.allCompleted",
+      "app-todo-list.remainingItems",
+      "app-todo-list.noItems"
+    ]
+  },
+  {
+    "library": "todo-ui",
+    "name": "TodoItemComponent",
+    "path": "apps\\todo-ui\\src\\components\\todo-item\\todo-item.component.ts",
+    "selector": "app-todo-item",
+    "type": "EXPOSED_COMPONENT",
+    "config": {
+      "library": "todo-ui",
+      "name": "TodoItemConfig"
+    },
+    "linkableToRuleset": false,
+    "localizationKeys": [
+      "$schema",
+      "app-todo-item.completedAt",
+      "app-todo-item.dueDate",
+      "app-todo-item.toggleDatepickerAxLabel",
+      "app-todo-item.assignedToLabel",
+      "app-todo-item.toggleStatusLabel",
+      "app-todo-item.deleteLabel"
+    ]
+  },
+  {
+    "library": "todo-ui",
+    "name": "TodoListComponent",
+    "path": "apps\\todo-ui\\src\\components\\todo-list\\todo-list.component.ts",
+    "selector": "app-todo-list",
+    "type": "COMPONENT",
+    "linkableToRuleset": false,
+    "localizationKeys": [
+      "$schema",
+      "app-todo-list.allCompleted",
+      "app-todo-list.remainingItems",
+      "app-todo-list.noItems"
+    ]
+  }
+]

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://raw.githubusercontent.com/AmadeusITGroup/otter/main/packages/%40o3r/localization/schemas/localization.schema.json",
+  "app-todo-item.completedAt": {
+    "defaultValue": "Completed on: {date}",
+    "description": "Completed on label"
+  },
+  "app-todo-item.dueDate": {
+    "defaultValue": "Due date: {date}",
+    "description": "Due date label with date as parameter"
+  },
+  "app-todo-item.toggleDatepickerAxLabel": {
+    "defaultValue": "Toggle datepicker",
+    "description": "AX label for the datepicker toggle button "
+  },
+  "app-todo-item.assignedToLabel": {
+    "defaultValue": "Assigned to:",
+    "description": "Label for the assigned to input"
+  },
+  "app-todo-item.toggleStatusLabel": {
+    "defaultValue": "Toggle status",
+    "description": "Label of the toggle status button"
+  },
+  "app-todo-item.deleteLabel": {
+    "defaultValue": "Delete",
+    "description": "Label of the delete button"
+  }
+}

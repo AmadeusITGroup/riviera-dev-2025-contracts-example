@@ -1,0 +1,13 @@
+{
+  "app-root.addNewItem": "Add item",
+  "app-root.pageTitle": "To-do List",
+  "app-todo-item.assignedToLabel": "Assigned to:",
+  "app-todo-item.completedAt": "Completed on: {date}",
+  "app-todo-item.deleteLabel": "Delete",
+  "app-todo-item.dueDate": "Due date: {date}",
+  "app-todo-item.toggleDatepickerAxLabel": "Toggle datepicker",
+  "app-todo-item.toggleStatusLabel": "Toggle status",
+  "app-todo-list.allCompleted": "All items are completed",
+  "app-todo-list.noItems": "No items in the to-do list",
+  "app-todo-list.remainingItems": "{remainingItems, plural, =1{# item} other{# items}} in the to-do list not completed"
+}

@@ -1,0 +1,18 @@
+@use './generated/theme.vars';
+
+:root {
+  --df-primary-500: var(--color-primary-default);
+  --df-warn-500: var(--color-warn-default);
+  --df-success-500: var(--color-success-default);
+  --df-danger-500: var(--color-danger-default);
+  --df-info-500: var(--color-info-default);
+  --df-info-50: var(--color-info-background);
+}
+
+.card {
+  border-radius: var(--radius-panel);
+}
+
+.btn {
+  border-radius: var(--radius-button);
+}

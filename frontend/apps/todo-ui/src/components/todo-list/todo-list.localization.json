@@ -1,0 +1,15 @@
+{
+  "$schema": "https://raw.githubusercontent.com/AmadeusITGroup/otter/main/packages/%40o3r/localization/schemas/localization.schema.json",
+  "app-todo-list.allCompleted": {
+    "defaultValue": "All items are completed",
+    "description": "Alert label when all items are completed"
+  },
+  "app-todo-list.remainingItems": {
+    "defaultValue": "{remainingItems, plural, =1{# item} other{# items}} in the to-do list not completed",
+    "description": "Alert label for remaining items"
+  },
+  "app-todo-list.noItems": {
+    "defaultValue": "No items in the to-do list",
+    "description": "Alert label when no items in the list"
+  }
+}
