@@ -1,0 +1,155 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "todo-ui": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        },
+        "@o3r/core:component": {
+          "path": "apps/todo-ui/src/components"
+        },
+        "@o3r/core:page": {
+          "path": "apps/todo-ui/src/app"
+        },
+        "@o3r/core:service": {
+          "path": "apps/todo-ui/src/services"
+        },
+        "@o3r/core:store": {
+          "path": "apps/todo-ui/src/store"
+        },
+        "@o3r/core:schematics-update": {
+          "path": "apps/todo-ui/src/schematics"
+        },
+        "@o3r/testing:playwright-scenario": {
+          "path": "apps/todo-ui/e2e-playwright/scenarios"
+        },
+        "@o3r/testing:playwright-sanity": {
+          "path": "apps/todo-ui/e2e-playwright/sanity"
+        }
+      },
+      "root": "apps/todo-ui",
+      "sourceRoot": "apps/todo-ui/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": "apps/todo-ui/dist",
+            "index": "apps/todo-ui/src/index.html",
+            "browser": "apps/todo-ui/src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "apps/todo-ui/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "apps/todo-ui/public"
+              }
+            ],
+            "styles": [
+              "apps/todo-ui/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "fileReplacements": [
+                {
+                  "replace": "apps/todo-ui/src/environments/environment.ts",
+                  "with": "apps/todo-ui/src/environments/environment.development.ts"
+                }
+              ]
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "todo-ui:build:production"
+            },
+            "development": {
+              "buildTarget": "todo-ui:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "apps/todo-ui/tsconfig.spec.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "apps/todo-ui/public"
+              }
+            ],
+            "styles": [
+              "apps/todo-ui/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    }
+  },
+  "schematics": {
+    "*:ng-add": {
+      "registerDevtool": true
+    },
+    "*:*": {
+      "libsDir": "libs",
+      "appsDir": "apps"
+    },
+    "@o3r/workspace:ng-add": {
+      "skipVscodeTools": true,
+      "skipRenovate": true,
+      "skipPreCommitChecks": true
+    },
+    "@o3r/core:component": {},
+    "@o3r/core:component-container": {},
+    "@o3r/core:component-presenter": {}
+  },
+  "cli": {
+    "schematicCollections": [
+      "@o3r/testing",
+      "@o3r/workspace",
+      "@o3r/core",
+      "@schematics/angular"
+    ],
+    "analytics": false
+  }
+}
