@@ -1,6 +1,5 @@
 package com.amadeus.services;
 
-import java.text.DateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
@@ -9,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import com.amadeus.ErrorResponseBuilder;
 import com.amadeus.todo.beans.BaseTodo;
 import com.amadeus.todo.beans.Todo;
 import com.amadeus.todo.beans.TodoStatus;
@@ -17,6 +17,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.validation.constraints.NotNull;
 import jakarta.ws.rs.BadRequestException;
 import jakarta.ws.rs.NotFoundException;
+import jakarta.ws.rs.core.Response;
 
 @ApplicationScoped
 public class TodoService {
@@ -67,7 +68,11 @@ public class TodoService {
         todo.setTitle(data.getTitle());
         todo.setUser(data.getUser());
         if (!data.getDueDate().matches(DATE_FORMAT)) {
-            throw new BadRequestException("The format of dueDate does not respect yyyy-mm-dd");
+            Response response = ErrorResponseBuilder.build(
+                Response.Status.BAD_REQUEST,
+                "The format of dueDate does not respect yyyy-mm-dd"
+            );
+            throw new BadRequestException(response);
         }
         todo.setDueDate(data.getDueDate());
         if (data.getStatus() == TodoStatus.done) {
@@ -80,7 +85,13 @@ public class TodoService {
 
     public Todo updateTodo(String todoId, com.amadeus.todo.beans.@NotNull BaseTodo data) {
         Todo todo = TODOS.get(todoId);
-        if (todo == null)  throw new NotFoundException("Todo with ID " + todoId + " not found");
+        if (todo == null) {
+            Response response = ErrorResponseBuilder.build(
+                Response.Status.NOT_FOUND,
+                "Todo with ID " + todoId + " not found"
+            );
+            throw new NotFoundException(response);
+        }
         if (todo.getStatus() == TodoStatus.done && data.getStatus() != TodoStatus.done) {
             todo.setCompletedAt(null);
         }
@@ -90,7 +101,11 @@ public class TodoService {
         todo.setTitle(data.getTitle());
         todo.setUser(data.getUser());
         if (!data.getDueDate().matches(DATE_FORMAT)) {
-            throw new BadRequestException("The format of dueDate does not respect yyyy-mm-dd");
+            Response response = ErrorResponseBuilder.build(
+                Response.Status.BAD_REQUEST,
+                "The format of dueDate does not respect yyyy-mm-dd"
+            );
+            throw new BadRequestException(response);
         }
         todo.setDueDate(data.getDueDate());
         todo.setStatus(data.getStatus() != null ? data.getStatus() : TodoStatus.on_hold);
@@ -100,7 +115,13 @@ public class TodoService {
 
     public void deleteTodo(String todoId) {
         Todo todo = TODOS.get(todoId);
-        if (todo == null)  throw new NotFoundException("Todo with ID " + todoId + " not found");
+        if (todo == null) {
+            Response response = ErrorResponseBuilder.build(
+                Response.Status.NOT_FOUND,
+                "Todo with ID " + todoId + " not found"
+            );
+            throw new NotFoundException(response);
+        }
         TODOS.remove(todoId);
     }
 

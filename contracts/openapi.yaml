@@ -78,7 +78,7 @@ components:
       type: object
       properties:
         code:
-          type: number
+          type: integer
           description: Error code
         message:
           type: string

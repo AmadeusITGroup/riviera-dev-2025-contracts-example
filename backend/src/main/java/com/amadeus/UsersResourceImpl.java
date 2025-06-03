@@ -14,6 +14,7 @@ import com.amadeus.todo.beans.User;
 import jakarta.inject.Inject;
 import jakarta.validation.constraints.NotNull;
 import jakarta.ws.rs.NotFoundException;
+import jakarta.ws.rs.core.Response;
 
 public class UsersResourceImpl implements UsersResource {
     @Inject
@@ -51,7 +52,13 @@ public class UsersResourceImpl implements UsersResource {
     @Override
     public User updateUser(String userId, @NotNull BaseUser data) {
         User user = USERS.get(userId);
-        if (user == null) throw new NotFoundException("User with ID " + userId + " not found");
+        if (user == null) {
+            Response response = ErrorResponseBuilder.build(
+                Response.Status.NOT_FOUND,
+                "User with ID " + userId + " not found"
+            );
+            throw new NotFoundException(response);
+        }
         user.setName(data.getName());
         USERS.put(userId, user);
         return user;
@@ -60,7 +67,13 @@ public class UsersResourceImpl implements UsersResource {
     @Override
     public void deleteUser(String userId) {
         User user = USERS.get(userId);
-        if (user == null) throw new NotFoundException("User with ID " + userId + " not found");
+        if (user == null) {
+            Response response = ErrorResponseBuilder.build(
+                Response.Status.NOT_FOUND,
+                "User with ID " + userId + " not found"
+            );
+            throw new NotFoundException(response);
+        }
         todoService.getTodos(userId, null).forEach(todo -> todo.setUser(null));
         USERS.remove(userId);
     }
