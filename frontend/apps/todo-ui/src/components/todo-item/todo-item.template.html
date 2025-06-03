@@ -39,12 +39,14 @@
           class="flex-fill"
           labelForId="assignedToInput"
           name="assignedToInput"
-          bindLabel="name"
-          bindValue="id"
-          [items]="userService.users()"
-          [ngModel]="todo().user | titlecase"
-          (ngModelChange)="changeAssignedTo($event)"
-        />
+          [ngModel]="todo().user"
+          (ngModelChange)="changeAssignedTo($event)"s>
+          @for (user of userService.users(); track user.id) {
+            <ng-option [value]="user.id">
+              {{ user.name | titlecase }}
+            </ng-option>
+          }
+        </ng-select>
       </div>
     </div>
     <div class="d-flex gap-3 justify-content-end mt-3">

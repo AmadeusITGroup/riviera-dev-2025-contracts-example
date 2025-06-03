@@ -1,5 +1,6 @@
 package com.amadeus;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +20,19 @@ public class UsersResourceImpl implements UsersResource {
     TodoService todoService;
 
     private static final Map<String, User> USERS = new HashMap<>();
+
+    /**
+     * For demo purpose
+     */
+    @Inject
+    private void onInit() {
+        Arrays.asList("Matthieu", "Kilian", "Corinne", "you").forEach(userName -> {
+            User user = new User();
+            user.setId(userName);
+            user.setName(userName);
+            USERS.put(user.getId(), user);
+        });
+    }
 
     @Override
     public List<User> getUsers() {

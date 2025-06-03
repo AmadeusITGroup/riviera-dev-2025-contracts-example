@@ -1,9 +1,32 @@
-import { effect, inject, Injectable, signal } from "@angular/core";
+import { effect, inject, Injectable } from "@angular/core";
 import { ApiFactoryService } from "@o3r/apis-manager";
-import { injectMutation, injectQuery, QueryClient } from "@tanstack/angular-query-experimental";
+import { CreateMutationOptions, injectMutation, injectQuery, QueryClient, Updater, type MutationFunction } from "@tanstack/angular-query-experimental";
 import { Todo, TodoApi } from "@todo-sdk/sdk";
-import { lastValueFrom } from "rxjs";
 import { AlertService } from "./alert.service";
+
+export const mutationHelper = <MutationReturnType, MutationArgumentType, QueryType>(
+  opts: {
+    queryKey: string,
+    optimisticUpdateFn: (args: MutationArgumentType) => Updater<QueryType | undefined, QueryType | undefined>,
+  },
+  queryClient: QueryClient,
+  alertService: AlertService
+): Pick<CreateMutationOptions<MutationReturnType, Error, MutationArgumentType, { previousValue: QueryType | undefined }>, 'onMutate' | 'onSettled' | 'onError'> => ({
+  onMutate: async (args: MutationArgumentType) => {
+    await queryClient.cancelQueries({ queryKey: [opts.queryKey] })
+    const previousValue = queryClient.getQueryData<QueryType>([opts.queryKey]);
+    queryClient.setQueryData<QueryType>(
+      [opts.queryKey],
+      opts.optimisticUpdateFn(args)
+    );
+    return { previousValue }
+  },
+  onSettled: () => queryClient.invalidateQueries({ queryKey: [opts.queryKey] }),
+  onError: (err, _, context) => {
+    alertService.add(err.message);
+    queryClient.setQueryData(['todos'], context!.previousValue);
+  }
+});
 
 @Injectable({
   providedIn: 'root'
@@ -19,70 +42,42 @@ export class TodoService {
   private readonly addMutation = injectMutation(() => ({
     mutationFn: (title: string) => this.api.createTodo({ BaseTodo: { title} }),
     mutationKey: ['createTodo'],
-    onMutate: async (title) => {
-      await this.queryClient.cancelQueries({ queryKey: ['todos'] })
-      const previousTodos = this.queryClient.getQueryData<Todo[]>(['todos']);
-      this.queryClient.setQueryData<Todo[]>(
-        ['todos'],
-        (old) => (old || []).concat({
+    ...mutationHelper<Todo, string, Todo[]>(
+      {
+        queryKey: 'todos',
+        optimisticUpdateFn: (title) => (old) => (old || []).concat({
           id: 'tmp-id',
           title,
           createdAt: Date.now()
         })
-      );
-      return { previousTodos }
-    },
-    onSettled: () => this.queryClient.invalidateQueries({ queryKey: ['todos'] }),
-    onError: (err, _, context) => {
-      this.alertService.add(err.message);
-      this.queryClient.setQueryData(['todos'], context!.previousTodos);
-    }
+      },
+      this.queryClient,
+      this.alertService
+    )
   }));
   private readonly updateMutation = injectMutation(() => ({
     mutationFn: (todo: Todo) => this.api.updateTodo({ todoId: todo.id, BaseTodo: todo }),
     mutationKey: ['updateTodo'],
-    onMutate: async (newTodo) => {
-      await this.queryClient.cancelQueries({ queryKey: ['todos', newTodo.id] })
-      const previousTodos = this.queryClient.getQueryData(['todos'])
-      this.queryClient.setQueryData<Todo[]>(
-        ['todos'],
-        (old) => old?.map((item) => item.id === newTodo.id ? { ...newTodo, completedAt: newTodo.status === 'done' ? Date.now() : undefined } : item)
-      );
-      return { previousTodos, newTodo }
-    },
-    onError: (err, _, context) => {
-      this.alertService.add(err.message);
-      this.queryClient.setQueryData(
-        ['todos'],
-        context!.previousTodos,
-      )
-    },
-    onSettled: (newTodo) => {
-      this.queryClient.invalidateQueries({ queryKey: ['todos', newTodo?.id] })
-    },
+    ...mutationHelper<Todo, Todo, Todo[]>(
+      {
+        queryKey: 'todos',
+        optimisticUpdateFn: (newTodo) => (old) => old?.map((item) => item.id === newTodo.id ? { ...newTodo, completedAt: newTodo.status === 'done' ? Date.now() : undefined } : item)
+      },
+      this.queryClient,
+      this.alertService
+    )
   }));
   private readonly deleteMutation = injectMutation(() => ({
     mutationFn: (todoId: string) => this.api.deleteTodo({ todoId }),
     mutationKey: ['deleteTodo'],
-    onMutate: async (todoId) => {
-      await this.queryClient.cancelQueries({ queryKey: ['todos', todoId] })
-      const previousTodos = this.queryClient.getQueryData(['todos']);
-      this.queryClient.setQueryData<Todo[]>(
-        ['todos'],
-        (old) => old?.filter(item => item.id !== todoId)
-      );
-      return { previousTodos, todoId }
-    },
-    onError: (err, _, context) => {
-      this.alertService.add(err.message);
-      this.queryClient.setQueryData(
-        ['todos'],
-        context!.previousTodos,
-      )
-    },
-    onSettled: (todoId) => {
-      this.queryClient.invalidateQueries({ queryKey: ['todos', todoId] })
-    },
+    ...mutationHelper<void, string, Todo[]>(
+      {
+        queryKey: 'todos',
+        optimisticUpdateFn: (todoId) => (old) => old?.filter(item => item.id !== todoId)
+      },
+      this.queryClient,
+      this.alertService
+    )
   }));
 
   public readonly todos = this.getQuery.data;

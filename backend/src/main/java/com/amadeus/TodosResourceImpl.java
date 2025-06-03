@@ -1,10 +1,6 @@
 package com.amadeus;
 
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 
 import com.amadeus.services.TodoService;
 import com.amadeus.todo.TodosResource;

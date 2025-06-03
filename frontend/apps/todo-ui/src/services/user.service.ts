@@ -1,8 +1,7 @@
-import { inject, Injectable, signal } from "@angular/core";
+import { inject, Injectable } from "@angular/core";
 import { ApiFactoryService } from "@o3r/apis-manager";
 import { injectQuery } from "@tanstack/angular-query-experimental";
-import { User, UserApi } from "@todo-sdk/sdk";
-import { lastValueFrom } from "rxjs";
+import { UserApi } from "@todo-sdk/sdk";
 
 @Injectable({
   providedIn: 'root'

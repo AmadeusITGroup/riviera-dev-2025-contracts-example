@@ -1,12 +1,13 @@
 package com.amadeus.services;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import com.amadeus.todo.TodosResource;
 import com.amadeus.todo.beans.BaseTodo;
 import com.amadeus.todo.beans.Todo;
 import com.amadeus.todo.beans.TodoStatus;
@@ -18,7 +19,42 @@ import jakarta.ws.rs.NotFoundException;
 @ApplicationScoped
 public class TodoService {
 
-    private static final Map<String, Todo> TODOS = new HashMap<>();
+    private static final Map<String, Todo> TODOS;
+    /**
+     * For demo purpose
+     */
+    static {
+        TODOS = new HashMap<>();
+        List<String> defaultTodoTitles = Arrays.asList(
+            "Prepare the RivieraDev demo...",
+            "Go to RivieraDev!",
+            "Celebrate the end of RivieraDev with a beer!",
+            "Start a new project with contracts"
+        );
+        int index = 0;
+        Date now = new Date();
+        for(Iterator<String> it = defaultTodoTitles.iterator(); it.hasNext(); index++) {
+            String todoTitle = it.next();
+            Todo todo = new Todo();
+            todo.setId(UUID.randomUUID().toString());
+            todo.setCreatedAt(now);
+            todo.setTitle(todoTitle);
+            todo.setStatus(TodoStatus.on_hold);
+            if (index == 0) {
+                todo.setStatus(TodoStatus.done);
+                todo.setCompletedAt(now);
+            }
+            if (index == 1) {
+                /** Start of the RivieraDev conference */
+                todo.setDueDate(new Date(now.getYear(), 6, 7));
+            }
+            if (index == 2) {
+                /** End of the RivieraDev conference */
+                todo.setDueDate(new Date(now.getYear(), 6, 9));
+            }
+            TODOS.put(todo.getId(), todo);
+        };
+    }
 
     public Todo createTodo(@NotNull BaseTodo data) {
         Date now = new Date();
@@ -64,6 +100,12 @@ public class TodoService {
             .filter(todo ->
                 (status == null || todo.getStatus().equals(status))
                 && (user == null || todo.getUser().equals(user))
-            ).toList();
+            )
+            .sorted((a, b) -> {
+                if (a.getDueDate() == null) return 1;
+                if (b.getDueDate() == null) return -1;
+                return a.getDueDate().getTime() > b.getDueDate().getTime() ? 1 : -1;
+            })
+            .toList();
     }
 }
