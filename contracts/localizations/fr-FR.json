@@ -1,0 +1,12 @@
+{
+  "app-root.addNewItem": "Ajouter une tâche",
+  "app-root.pageTitle": "Liste de tâches",
+  "app-todo-item.assignedToLabel": "Assigné à:",
+  "app-todo-item.completedAt": "Complété à:",
+  "app-todo-item.deleteLabel": "Supprimer",
+  "app-todo-item.toggleDatepickerAxLabel": "Activer le calendrier",
+  "app-todo-item.toggleStatusLabel": "Changer le status",
+  "app-todo-list.allCompleted": "Toutes les tâches sont faites",
+  "app-todo-list.noItems": "Aucune tâche à faire",
+  "app-todo-list.remainingItems": "{remainingItems, plural, =1{# tâche dans la liste n'est pas faite} other{# tâches dans la liste ne sont pas faites}}"
+}

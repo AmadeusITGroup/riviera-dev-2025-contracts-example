@@ -1,11 +1,11 @@
 @if (todos().length > 0) {
   @if (remainingTodos().length === 0) {
     <ngb-alert class="w-100" dfInsertAlertIcon type="success" [dismissible]="false">
-      All items are completed
+      {{ translations.allCompleted | o3rTranslate }}
     </ngb-alert>
   } @else {
     <ngb-alert class="w-100" dfInsertAlertIcon type="info" [dismissible]="false">
-      {{ remainingTodos().length }} item(s) in the todo list not completed
+      {{ translations.remainingItems | o3rTranslate : { remainingItems: remainingTodos().length } }}
     </ngb-alert>
   }
   @if (remainingTodos().length > 0) {
@@ -35,6 +35,6 @@
   }
 } @else {
   <ngb-alert class="w-100" dfInsertAlertIcon type="info" [dismissible]="false">
-    No items in the todo list
+    {{ translations.noItems | o3rTranslate }}
   </ngb-alert>
 }

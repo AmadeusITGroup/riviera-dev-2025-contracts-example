@@ -7,17 +7,14 @@
     <div class="card-text row flex-wrap space-between fs-6">
       <div class="col-md-6 col-12 d-flex flex-column gap-2">
         @if (isDone()) {
-          Completed at:
-          {{ todo().completedAt | date }}
+          {{ translations.completedAt | o3rTranslate: { date: todo().completedAt | date } }}
         } @else {
           <div class="d-flex align-items-center gap-2">
-            Due date:
-            {{ (todo().dueDate | date) || '-' }}
+          {{ translations.dueDate | o3rTranslate: { date: (todo().dueDate | date) || '-' } }}
             <input
               id="datepicker-popup"
               #dueDateInputRef
               class="visually-hidden"
-              placeholder="Select a due date"
               name="dueDateInput"
               [ngModel]="todo().dueDate"
               (ngModelChange)="changeDueDate($event)"
@@ -26,13 +23,13 @@
               (dateSelect)="dueDateInputRef.focus()"
             />
             <button class="rounded-circle btn btn-outline-secondary df-btn-icononly df-btn-tertiary fa-light fa-edit" (click)="dueDateInput.toggle()" type="button">
-              <span class="visually-hidden">Toggle datepicker</span>
+              <span class="visually-hidden">{{ translations.toggleDatepickerAxLabel | o3rTranslate }}</span>
             </button>
           </div>
         }
       </div>
       <div class="col-xl-4 col-md-6 col-12 d-flex gap-2">
-        <label for="assignedToInput" class="form-label">Assigned to:</label>
+        <label for="assignedToInput" class="form-label">{{ translations.assignedToLabel | o3rTranslate }}</label>
         <ng-select
           class="flex-fill"
           labelForId="assignedToInput"
@@ -50,11 +47,11 @@
     <div class="d-flex gap-3 justify-content-end mt-3">
       <button (click)="todoService.toggleStatus(todo().id)" class="btn btn-outline-primary" type="button">
         <span class="fa-check" aria-hidden="true"></span>
-        Toggle status
+        {{ translations.toggleStatusLabel | o3rTranslate }}
       </button>
       <button (click)="remove.emit()" class="btn btn-outline-danger" type="button">
         <span class="fa-trash-alt" aria-hidden="true"></span>
-        Delete
+        {{ translations.deleteLabel | o3rTranslate }}
       </button>
     </div>
   </div>

@@ -5,10 +5,14 @@ import { ApplicationDevtoolsConsoleService, ApplicationDevtoolsMessageService } 
 import { inject, runInInjectionContext } from '@angular/core';
 import { ConfigurationDevtoolsMessageService, ConfigurationDevtoolsConsoleService } from '@o3r/configuration';
 import { ComponentsDevtoolsMessageService } from '@o3r/components';
+import { LocalizationDevtoolsMessageService, LocalizationDevtoolsConsoleService, LocalizationService } from '@o3r/localization';
 
 bootstrapApplication(AppComponent, appConfig)
   .then((m) => {
     runInInjectionContext(m.injector, () => {
+      inject(LocalizationService).useLanguage('en-GB');
+      inject(LocalizationDevtoolsConsoleService);
+      inject(LocalizationDevtoolsMessageService);
       inject(ComponentsDevtoolsMessageService);
       inject(ConfigurationDevtoolsConsoleService);
       inject(ConfigurationDevtoolsMessageService);

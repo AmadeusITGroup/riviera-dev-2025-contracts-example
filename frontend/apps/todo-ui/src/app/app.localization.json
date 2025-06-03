@@ -1,0 +1,11 @@
+{
+  "$schema": "https://raw.githubusercontent.com/AmadeusITGroup/otter/main/packages/%40o3r/localization/schemas/localization.schema.json",
+  "app-root.addNewItem": {
+    "defaultValue": "Add item",
+    "description": "Label for the add new item button"
+  },
+  "app-root.pageTitle": {
+    "defaultValue": "Todo List",
+    "description": "Page title"
+  }
+}

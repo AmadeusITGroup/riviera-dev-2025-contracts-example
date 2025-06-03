@@ -1,0 +1,72 @@
+[
+  {
+    "description": "Label for the add new item button",
+    "dictionary": false,
+    "referenceData": false,
+    "key": "app-root.addNewItem",
+    "value": "Add item"
+  },
+  {
+    "description": "Page title",
+    "dictionary": false,
+    "referenceData": false,
+    "key": "app-root.pageTitle",
+    "value": "Todo List"
+  },
+  {
+    "description": "Completed at label",
+    "dictionary": false,
+    "referenceData": false,
+    "key": "app-todo-item.completedAt",
+    "value": "Completed at:"
+  },
+  {
+    "description": "AX label for the datepicker toggle button ",
+    "dictionary": false,
+    "referenceData": false,
+    "key": "app-todo-item.toggleDatepickerAxLabel",
+    "value": "Toggle datepicker"
+  },
+  {
+    "description": "Label for the assigned to input",
+    "dictionary": false,
+    "referenceData": false,
+    "key": "app-todo-item.assignedToLabel",
+    "value": "Assigned to:"
+  },
+  {
+    "description": "Label of the toggle status button",
+    "dictionary": false,
+    "referenceData": false,
+    "key": "app-todo-item.toggleStatusLabel",
+    "value": "Toggle status"
+  },
+  {
+    "description": "Label of the delete button",
+    "dictionary": false,
+    "referenceData": false,
+    "key": "app-todo-item.deleteLabel",
+    "value": "Delete"
+  },
+  {
+    "description": "Alert label when all items are completed",
+    "dictionary": false,
+    "referenceData": false,
+    "key": "app-todo-list.allCompleted",
+    "value": "All items are completed"
+  },
+  {
+    "description": "Alert label for remaining items",
+    "dictionary": false,
+    "referenceData": false,
+    "key": "app-todo-list.remainingItems",
+    "value": "{remainingItems, plural, =1{# item} other{# items}} in the todo list not completed"
+  },
+  {
+    "description": "Alert label when no items in the list",
+    "dictionary": false,
+    "referenceData": false,
+    "key": "app-todo-list.noItems",
+    "value": "No items in the todo list"
+  }
+]
