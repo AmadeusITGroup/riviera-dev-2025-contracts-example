@@ -25,6 +25,7 @@
     "@ngrx/store": "~19.1.0",
     "@ngrx/store-devtools": "~19.1.0",
     "@o3r/application": "~12.2.5",
+    "@o3r/configuration": "^12.2.5",
     "@o3r/core": "~12.2.5",
     "@o3r/logger": "~12.2.5",
     "@o3r/routing": "~12.2.5",

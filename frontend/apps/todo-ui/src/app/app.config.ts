@@ -5,6 +5,7 @@ import { ApiManager, provideApiManager } from '@o3r/apis-manager';
 import { provideTanStackQuery } from '@tanstack/angular-query-experimental';
 import { QueryClient } from '@tanstack/angular-query-experimental';
 import { routes } from './app.routes';
+import { provideStore } from '@ngrx/store';
 
 const apiFetchClient = new ApiFetchClient({ basePath: 'http://localhost:8080' });
 const apiManager = new ApiManager(apiFetchClient);
@@ -14,6 +15,7 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideApiManager(apiManager),
-    provideTanStackQuery(new QueryClient())
+    provideTanStackQuery(new QueryClient()),
+    provideStore()
   ]
 };

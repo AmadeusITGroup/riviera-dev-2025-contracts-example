@@ -172,6 +172,7 @@
   },
   "cli": {
     "schematicCollections": [
+      "@o3r/configuration",
       "@o3r/testing",
       "@o3r/workspace",
       "@o3r/core",

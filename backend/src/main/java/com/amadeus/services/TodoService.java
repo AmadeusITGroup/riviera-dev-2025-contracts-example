@@ -113,7 +113,7 @@ public class TodoService {
         }
         todo.setTitle(data.getTitle());
         todo.setUser(data.getUser());
-        if (!data.getDueDate().matches(DATE_FORMAT)) {
+        if (data.getDueDate() != null && !data.getDueDate().matches(DATE_FORMAT)) {
             Response response = ErrorResponseBuilder.build(
                 Response.Status.BAD_REQUEST,
                 "The format of dueDate does not respect yyyy-mm-dd"
