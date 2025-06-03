@@ -12,14 +12,8 @@ import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
   standalone: true
 })
 export class isTodayOrBeforePipe implements PipeTransform {
-  private getStringifiedDate(date: Date): string {
-    return date.toISOString().slice(0, 10);
-  }
-
-  public transform(date: number | undefined): boolean {
-    const today = new Date();
-    today.setHours(0,0,0,0);
-    return !!date && this.getStringifiedDate(today) >= this.getStringifiedDate(new Date(date));
+  public transform(date: string | undefined): boolean {
+    return !!date && new Date().toISOString().slice(0, 10) >= date;
   }
 }
 
@@ -48,8 +42,14 @@ export class TodoItemComponent {
   public readonly isDone = computed(() => this.todo().status === 'done');
 
   public changeDueDate(event: NgbDate) {
-    const dueDate = new Date(event.year, event.month - 1, event.day);
-    this.todoService.changeDueDate(this.todo().id, dueDate.getTime());
+    this.todoService.changeDueDate(
+      this.todo().id,
+      [
+        event.year,
+        `${event.month}`.padStart(2, '0'),
+        `${event.day}`.padStart(2, '0')
+      ].join('-')
+    );
   }
 
   public changeAssignedTo(userId: string) {

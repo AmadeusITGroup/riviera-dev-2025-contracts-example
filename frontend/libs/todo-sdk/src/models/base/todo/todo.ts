@@ -11,8 +11,8 @@ import { TodoStatus } from '../todo-status';
 export interface Todo {
   /** ID of the user who owns the todo */
   user?: string;
-  /** Due date timestamp of the todo */
-  dueDate?: number;
+  /** Due date of the todo */
+  dueDate?: string;
   /** Title of the todo */
   title: string;
   /** @see TodoStatus */

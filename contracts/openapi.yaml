@@ -45,9 +45,9 @@ components:
           type: string
           description: ID of the user who owns the todo
         dueDate:
-          type: number
-          format: date-time
-          description: Due date timestamp of the todo
+          type: string
+          format: date
+          description: Due date of the todo
         title:
           type: string
           description: Title of the todo

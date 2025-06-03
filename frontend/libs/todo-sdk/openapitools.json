@@ -8,7 +8,7 @@
       "todo-sdk-sdk": {
         "generatorName": "typescriptFetch",
         "output": ".",
-        "inputSpec": "./open-api.yaml"
+        "inputSpec": "../../../contracts/openapi.yaml"
       }
     }
   }
