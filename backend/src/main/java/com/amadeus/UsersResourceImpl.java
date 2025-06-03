@@ -13,7 +13,7 @@ import com.amadeus.todo.beans.User;
 
 import jakarta.inject.Inject;
 import jakarta.validation.constraints.NotNull;
-import jakarta.ws.rs.NotFoundException;
+import jakarta.ws.rs.WebApplicationException;
 import jakarta.ws.rs.core.Response;
 
 public class UsersResourceImpl implements UsersResource {
@@ -42,6 +42,13 @@ public class UsersResourceImpl implements UsersResource {
 
     @Override
     public User createUser(@NotNull BaseUser data) {
+        if (USERS.values().stream().anyMatch(user -> user.getName().equals(data.getName()))) {
+            Response response = ErrorResponseBuilder.build(
+                Response.Status.CONFLICT,
+                "There is already a User with the name: " + data.getName()
+            );
+            throw new WebApplicationException(response);
+        }
         User user = new User();
         user.setId(UUID.randomUUID().toString());
         user.setName(data.getName());
@@ -51,13 +58,20 @@ public class UsersResourceImpl implements UsersResource {
 
     @Override
     public User updateUser(String userId, @NotNull BaseUser data) {
+        if (USERS.values().stream().anyMatch(user -> !user.getId().equals(userId) && user.getName().equals(data.getName()))) {
+            Response response = ErrorResponseBuilder.build(
+                Response.Status.CONFLICT,
+                "There is already a User with the name: " + data.getName()
+            );
+            throw new WebApplicationException(response);
+        }
         User user = USERS.get(userId);
         if (user == null) {
             Response response = ErrorResponseBuilder.build(
                 Response.Status.NOT_FOUND,
                 "User with ID " + userId + " not found"
             );
-            throw new NotFoundException(response);
+            throw new WebApplicationException(response);
         }
         user.setName(data.getName());
         USERS.put(userId, user);
@@ -72,7 +86,7 @@ public class UsersResourceImpl implements UsersResource {
                 Response.Status.NOT_FOUND,
                 "User with ID " + userId + " not found"
             );
-            throw new NotFoundException(response);
+            throw new WebApplicationException(response);
         }
         todoService.getTodos(userId, null).forEach(todo -> todo.setUser(null));
         USERS.remove(userId);

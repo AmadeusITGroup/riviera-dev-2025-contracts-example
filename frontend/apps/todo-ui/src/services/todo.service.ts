@@ -1,17 +1,20 @@
 import { effect, inject, Injectable } from "@angular/core";
 import { ApiFactoryService } from "@o3r/apis-manager";
 import { CreateMutationOptions, injectMutation, injectQuery, QueryClient, Updater, type MutationFunction } from "@tanstack/angular-query-experimental";
-import { Todo, TodoApi } from "@todo-sdk/sdk";
+import { Todo, TodoApi, Error as SdkError } from "@todo-sdk/sdk";
 import { AlertService } from "./alert.service";
 
-export const mutationHelper = <MutationReturnType, MutationArgumentType, QueryType>(
+type DataError = { data: SdkError };
+const isDataError = (error: Error | DataError): error is DataError => !!(error as DataError).data;
+
+const mutationHelper = <MutationReturnType, MutationArgumentType, QueryType>(
   opts: {
     queryKey: string,
     optimisticUpdateFn: (args: MutationArgumentType) => Updater<QueryType | undefined, QueryType | undefined>,
   },
   queryClient: QueryClient,
   alertService: AlertService
-): Pick<CreateMutationOptions<MutationReturnType, Error, MutationArgumentType, { previousValue: QueryType | undefined }>, 'onMutate' | 'onSettled' | 'onError'> => ({
+): Pick<CreateMutationOptions<MutationReturnType, Error | DataError, MutationArgumentType, { previousValue: QueryType | undefined }>, 'onMutate' | 'onSettled' | 'onError'> => ({
   onMutate: async (args: MutationArgumentType) => {
     await queryClient.cancelQueries({ queryKey: [opts.queryKey] })
     const previousValue = queryClient.getQueryData<QueryType>([opts.queryKey]);
@@ -23,7 +26,7 @@ export const mutationHelper = <MutationReturnType, MutationArgumentType, QueryTy
   },
   onSettled: () => queryClient.invalidateQueries({ queryKey: [opts.queryKey] }),
   onError: (err, _, context) => {
-    alertService.add(err.message);
+    alertService.add(isDataError(err) ? `[${err.data.code}] ${err.data.message}` : err.message);
     queryClient.setQueryData(['todos'], context!.previousValue);
   }
 });
