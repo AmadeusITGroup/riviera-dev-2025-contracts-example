@@ -1,0 +1,14 @@
+[
+  {
+    "library": "todo-ui",
+    "name": "TodoItemComponent",
+    "path": "apps/todo-ui/src/components/todo-item/todo-item.component.ts",
+    "selector": "app-todo-item",
+    "type": "EXPOSED_COMPONENT",
+    "config": {
+      "library": "todo-ui",
+      "name": "TodoItemConfig"
+    },
+    "linkableToRuleset": false
+  }
+]

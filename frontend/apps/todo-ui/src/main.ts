@@ -4,10 +4,12 @@ import { AppComponent } from './app/app.component';
 import { ApplicationDevtoolsConsoleService, ApplicationDevtoolsMessageService } from '@o3r/application';
 import { inject, runInInjectionContext } from '@angular/core';
 import { ConfigurationDevtoolsMessageService, ConfigurationDevtoolsConsoleService } from '@o3r/configuration';
+import { ComponentsDevtoolsMessageService } from '@o3r/components';
 
 bootstrapApplication(AppComponent, appConfig)
   .then((m) => {
     runInInjectionContext(m.injector, () => {
+      inject(ComponentsDevtoolsMessageService);
       inject(ConfigurationDevtoolsConsoleService);
       inject(ConfigurationDevtoolsMessageService);
       inject(ApplicationDevtoolsMessageService);

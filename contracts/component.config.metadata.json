@@ -1,0 +1,23 @@
+[
+  {
+    "library": "todo-ui",
+    "name": "TodoItemConfig",
+    "description": "Configuration for TodoItem component",
+    "path": "apps/todo-ui/src/components/todo-item/todo-item.config.ts",
+    "type": "EXPOSED_COMPONENT",
+    "properties": [
+      {
+        "description": "Display mode for the Todo item status",
+        "restrictionKeys": [],
+        "label": "status Mode",
+        "name": "statusMode",
+        "type": "enum",
+        "choices": [
+          "side-border",
+          "line-through"
+        ],
+        "value": "side-border"
+      }
+    ]
+  }
+]

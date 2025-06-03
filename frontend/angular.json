@@ -123,6 +123,18 @@
             ],
             "scripts": []
           }
+        },
+        "extract-components": {
+          "builder": "@o3r/components:extractor",
+          "options": {
+            "tsConfig": "apps/todo-ui/tsconfig.app.json",
+            "configOutputFile": "../contracts/component.config.metadata.json",
+            "componentOutputFile": "../contracts/component.class.metadata.json",
+            "name": "todo-ui",
+            "libraries": [],
+            "placeholdersMetadataFilePath": "apps/todo-ui/placeholders.metadata.json",
+            "exposedComponentSupport": true
+          }
         }
       }
     },
@@ -172,6 +184,7 @@
   },
   "cli": {
     "schematicCollections": [
+      "@o3r/components",
       "@o3r/configuration",
       "@o3r/testing",
       "@o3r/workspace",
