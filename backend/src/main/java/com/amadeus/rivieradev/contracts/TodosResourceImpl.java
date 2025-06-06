@@ -3,15 +3,15 @@ package com.amadeus.rivieradev.contracts;
 import java.util.List;
 
 import com.amadeus.rivieradev.contracts.services.TodoService;
-import com.amadeus.rivieradev.contracts.api.TodosResource;
-import com.amadeus.rivieradev.contracts.api.beans.BaseTodo;
-import com.amadeus.rivieradev.contracts.api.beans.Todo;
-import com.amadeus.rivieradev.contracts.api.beans.TodoStatus;
+import com.amadeus.rivieradev.contracts.api.api.TodosApi;
+import com.amadeus.rivieradev.contracts.api.models.BaseTodo;
+import com.amadeus.rivieradev.contracts.api.models.Todo;
+import com.amadeus.rivieradev.contracts.api.models.TodoStatus;
 
 import jakarta.inject.Inject;
 import jakarta.validation.constraints.NotNull;
 
-public class TodosResourceImpl implements TodosResource {
+public class TodosResourceImpl implements TodosApi {
     @Inject
     TodoService todoService;
 
@@ -21,7 +21,7 @@ public class TodosResourceImpl implements TodosResource {
     }
 
     @Override
-    public Todo updateTodo(String todoId, com.amadeus.rivieradev.contracts.api.beans.@NotNull BaseTodo data) {
+    public Todo updateTodo(String todoId, @NotNull BaseTodo data) {
         return todoService.updateTodo(todoId, data);
     }
 

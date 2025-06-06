@@ -18,7 +18,7 @@
     "dictionary": false,
     "referenceData": false,
     "key": "app-todo-item.completedAt",
-    "value": "Completed at:"
+    "value": "Completed at: {date}"
   },
   {
     "description": "Due date label with date as parameter",

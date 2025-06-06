@@ -115,10 +115,10 @@ export class UserApi implements Api {
     let tokenizedUrl;
     if (this.client.options.enableParameterSerialization) {
       const pathParamsProperties = this.client.getPropertiesFromData(data, ['userId']);
-      const pathParamSerialization = { userId: { explode: false, style: 'simple' } }
+      const pathParamSerialization = { userId: { explode: false, style: 'simple' } };
       const serializedPathParams = this.client.serializePathParams(pathParamsProperties, pathParamSerialization);
-      basePath = `${this.client.options.basePath}/users/${serializedPathParams['userId']}`
-      tokenizedUrl = `${this.client.options.basePath}/users/${this.piiParamTokens['userId'] || serializedPathParams['userId']}`
+      basePath = `${this.client.options.basePath}/users/${serializedPathParams['userId']}`;
+      tokenizedUrl = `${this.client.options.basePath}/users/${this.piiParamTokens['userId'] || serializedPathParams['userId']}`;
     } else {
       basePath = `${this.client.options.basePath}/users/${data['userId']}`;
       tokenizedUrl = `${this.client.options.basePath}/users/${this.piiParamTokens['userId'] || data['userId']}`;
@@ -214,10 +214,10 @@ export class UserApi implements Api {
     let tokenizedUrl;
     if (this.client.options.enableParameterSerialization) {
       const pathParamsProperties = this.client.getPropertiesFromData(data, ['userId']);
-      const pathParamSerialization = { userId: { explode: false, style: 'simple' } }
+      const pathParamSerialization = { userId: { explode: false, style: 'simple' } };
       const serializedPathParams = this.client.serializePathParams(pathParamsProperties, pathParamSerialization);
-      basePath = `${this.client.options.basePath}/users/${serializedPathParams['userId']}`
-      tokenizedUrl = `${this.client.options.basePath}/users/${this.piiParamTokens['userId'] || serializedPathParams['userId']}`
+      basePath = `${this.client.options.basePath}/users/${serializedPathParams['userId']}`;
+      tokenizedUrl = `${this.client.options.basePath}/users/${this.piiParamTokens['userId'] || serializedPathParams['userId']}`;
     } else {
       basePath = `${this.client.options.basePath}/users/${data['userId']}`;
       tokenizedUrl = `${this.client.options.basePath}/users/${this.piiParamTokens['userId'] || data['userId']}`;

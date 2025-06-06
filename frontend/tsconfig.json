@@ -17,15 +17,15 @@
     "declaration": true,
     "paths": {
       "@riviera-dev-contracts/todo-sdk": [
-        "libs/todo-sdk/dist",
-        "libs/todo-sdk/src/index"
+        "../generated/sdks/typescript-client-sdk/dist",
+        "../generated/sdks/typescript-client-sdk/src/index"
       ],
       "@riviera-dev-contracts/todo-sdk/fixtures": [
-        "libs/todo-sdk/src/fixtures/jest"
+        "../generated/sdks/typescript-client-sdk/src/fixtures/jest"
       ],
       "@riviera-dev-contracts/todo-sdk/*": [
-        "libs/todo-sdk/dist/*",
-        "libs/todo-sdk/src/*"
+        "../generated/sdks/typescript-client-sdk/dist/*",
+        "../generated/sdks/typescript-client-sdk/src/*"
       ]
     },
     "baseUrl": "."
