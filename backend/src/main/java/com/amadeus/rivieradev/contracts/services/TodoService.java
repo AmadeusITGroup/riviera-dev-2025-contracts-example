@@ -1,4 +1,4 @@
-package com.amadeus.services;
+package com.amadeus.rivieradev.contracts.services;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -8,10 +8,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import com.amadeus.ErrorResponseBuilder;
-import com.amadeus.todo.beans.BaseTodo;
-import com.amadeus.todo.beans.Todo;
-import com.amadeus.todo.beans.TodoStatus;
+import com.amadeus.rivieradev.contracts.ErrorResponseBuilder;
+import com.amadeus.rivieradev.contracts.api.beans.BaseTodo;
+import com.amadeus.rivieradev.contracts.api.beans.Todo;
+import com.amadeus.rivieradev.contracts.api.beans.TodoStatus;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.validation.constraints.NotNull;
@@ -89,7 +89,7 @@ public class TodoService {
         return todo;
     }
 
-    public Todo updateTodo(String todoId, com.amadeus.todo.beans.@NotNull BaseTodo data) {
+    public Todo updateTodo(String todoId, com.amadeus.rivieradev.contracts.api.beans.@NotNull BaseTodo data) {
         if (TODOS.values().stream().anyMatch(todo -> !todo.getId().equals(todoId) && todo.getTitle().equals(data.getTitle()))) {
             Response response = ErrorResponseBuilder.build(
                 Response.Status.CONFLICT,

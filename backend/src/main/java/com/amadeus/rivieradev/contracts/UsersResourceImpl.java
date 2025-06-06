@@ -1,4 +1,4 @@
-package com.amadeus;
+package com.amadeus.rivieradev.contracts;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import com.amadeus.services.TodoService;
-import com.amadeus.todo.UsersResource;
-import com.amadeus.todo.beans.BaseUser;
-import com.amadeus.todo.beans.User;
+import com.amadeus.rivieradev.contracts.services.TodoService;
+import com.amadeus.rivieradev.contracts.api.UsersResource;
+import com.amadeus.rivieradev.contracts.api.beans.BaseUser;
+import com.amadeus.rivieradev.contracts.api.beans.User;
 
 import jakarta.inject.Inject;
 import jakarta.validation.constraints.NotNull;
@@ -26,7 +26,7 @@ public class UsersResourceImpl implements UsersResource {
      * For demo purpose
      */
     @Inject
-    private void onInit() {
+    void onInit() {
         Arrays.asList("Matthieu", "Kilian", "Corinne", "you").forEach(userName -> {
             User user = new User();
             user.setId(userName);

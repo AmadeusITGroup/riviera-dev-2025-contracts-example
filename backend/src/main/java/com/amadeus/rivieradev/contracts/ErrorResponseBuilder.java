@@ -1,8 +1,8 @@
-package com.amadeus;
+package com.amadeus.rivieradev.contracts;
 
 import jakarta.ws.rs.core.Response;
 
-import com.amadeus.todo.beans.Error;
+import com.amadeus.rivieradev.contracts.api.beans.Error;
 
 public final class ErrorResponseBuilder {
     public static Response build(Response.Status status, String message) {

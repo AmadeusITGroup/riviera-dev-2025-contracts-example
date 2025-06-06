@@ -1,7 +1,7 @@
 import { Component, computed, inject, input, output, Input } from '@angular/core';
 import { DfAlertModule } from '@design-factory/design-factory';
 import { TodoItemComponent } from '../todo-item/todo-item.component';
-import { Todo } from '@todo-sdk/sdk';
+import { Todo } from '@riviera-dev-contracts/todo-sdk';
 import { TodoService } from '../../services/todo.service';
 import { O3rComponent } from '@o3r/core';
 import { Localization, LocalizationModule, Translatable } from '@o3r/localization';

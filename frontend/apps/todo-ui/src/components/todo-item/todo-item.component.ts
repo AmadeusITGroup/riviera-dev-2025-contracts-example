@@ -1,7 +1,7 @@
 import { DatePipe, NgClass, TitleCasePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject, input, output, ViewEncapsulation, Input } from '@angular/core';
 import { DfDatePickerModule, DfSelectModule, DfTooltipModule } from '@design-factory/design-factory';
-import { Todo } from '@todo-sdk/sdk';
+import { Todo } from '@riviera-dev-contracts/todo-sdk';
 import { UserService } from '../../services/user.service';
 import { FormsModule } from '@angular/forms';
 import { TodoService } from '../../services/todo.service';

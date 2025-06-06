@@ -1,5 +1,5 @@
 {
-  "name": "@todo-sdk/sdk",
+  "name": "@riviera-dev-contracts/todo-sdk",
   "version": "0.0.0-placeholder",
   "description": "sdk - SDK",
   "source": "src/index.ts",

@@ -16,14 +16,14 @@
     "module": "ES2022",
     "declaration": true,
     "paths": {
-      "@todo-sdk/sdk": [
+      "@riviera-dev-contracts/todo-sdk": [
         "libs/todo-sdk/dist",
         "libs/todo-sdk/src/index"
       ],
-      "@todo-sdk/sdk/fixtures": [
+      "@riviera-dev-contracts/todo-sdk/fixtures": [
         "libs/todo-sdk/src/fixtures/jest"
       ],
-      "@todo-sdk/sdk/*": [
+      "@riviera-dev-contracts/todo-sdk/*": [
         "libs/todo-sdk/dist/*",
         "libs/todo-sdk/src/*"
       ]

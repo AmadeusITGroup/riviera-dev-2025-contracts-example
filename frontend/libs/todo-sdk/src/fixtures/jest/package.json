@@ -1,5 +1,5 @@
 {
-  "name": "@todo-sdk/sdk/jest",
+  "name": "@riviera-dev-contracts/todo-sdk/jest",
   "main": "../../cjs/api/fixtures.jest.js",
   "module": "../../esm2020/api/fixtures.jest.js",
   "node": "../../cjs/api/fixtures.jest.js",

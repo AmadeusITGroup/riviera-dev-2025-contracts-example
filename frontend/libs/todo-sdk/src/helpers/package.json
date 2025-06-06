@@ -1,5 +1,5 @@
 {
-  "name": "@todo-sdk/sdk/helpers",
+  "name": "@riviera-dev-contracts/todo-sdk/helpers",
   "main": "../cjs/helpers/index.js",
   "module": "../esm2020/helpers/index.js",
   "node": "../cjs/helpers/index.js",

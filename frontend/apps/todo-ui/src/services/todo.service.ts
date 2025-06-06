@@ -1,7 +1,7 @@
 import { effect, inject, Injectable } from "@angular/core";
 import { ApiFactoryService } from "@o3r/apis-manager";
 import { CreateMutationOptions, injectMutation, injectQuery, QueryClient, Updater, type MutationFunction } from "@tanstack/angular-query-experimental";
-import { Todo, TodoApi, Error as SdkError } from "@todo-sdk/sdk";
+import { Todo, TodoApi, Error as SdkError } from "@riviera-dev-contracts/todo-sdk";
 import { AlertService } from "./alert.service";
 
 type DataError = { data: SdkError };

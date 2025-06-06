@@ -1,5 +1,5 @@
 {
-  "name": "@todo-sdk/sdk/spec",
+  "name": "@riviera-dev-contracts/todo-sdk/spec",
   "main": "../cjs/spec/index.js",
   "module": "../esm2020/spec/index.js",
   "node": "../cjs/spec/index.js",
