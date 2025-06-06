@@ -1,9 +1,10 @@
 {
   "app-root.addNewItem": "Ajouter une tâche",
   "app-root.pageTitle": "Liste de tâches",
-  "app-todo-item.assignedToLabel": "Assigné à:",
-  "app-todo-item.completedAt": "Complété à:",
+  "app-todo-item.assignedToLabel": "Assigné à :",
+  "app-todo-item.completedAt": "Complété à :",
   "app-todo-item.deleteLabel": "Supprimer",
+  "app-todo-item.dueDate": "À faire avant le : {date}",
   "app-todo-item.toggleDatepickerAxLabel": "Activer le calendrier",
   "app-todo-item.toggleStatusLabel": "Changer le status",
   "app-todo-list.allCompleted": "Toutes les tâches sont faites",

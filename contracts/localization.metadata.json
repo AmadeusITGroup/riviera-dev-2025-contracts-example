@@ -21,6 +21,13 @@
     "value": "Completed at:"
   },
   {
+    "description": "Due date label with date as parameter",
+    "dictionary": false,
+    "referenceData": false,
+    "key": "app-todo-item.dueDate",
+    "value": "Due date: {date}"
+  },
+  {
     "description": "AX label for the datepicker toggle button ",
     "dictionary": false,
     "referenceData": false,

@@ -4,6 +4,10 @@
     "defaultValue": "Completed at:",
     "description": "Completed at label"
   },
+  "app-todo-item.dueDate": {
+    "defaultValue": "Due date: {date}",
+    "description": "Due date label with date as parameter"
+  },
   "app-todo-item.toggleDatepickerAxLabel": {
     "defaultValue": "Toggle datepicker",
     "description": "AX label for the datepicker toggle button "

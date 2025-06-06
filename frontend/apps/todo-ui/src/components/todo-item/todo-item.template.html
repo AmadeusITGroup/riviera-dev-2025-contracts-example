@@ -10,7 +10,7 @@
           {{ translations.completedAt | o3rTranslate: { date: todo().completedAt | date } }}
         } @else {
           <div class="d-flex align-items-center gap-2">
-          {{ translations.dueDate | o3rTranslate: { date: (todo().dueDate | date) || '-' } }}
+            {{ translations.dueDate | o3rTranslate: { date: (todo().dueDate | date) || '-' } }}
             <input
               id="datepicker-popup"
               #dueDateInputRef
