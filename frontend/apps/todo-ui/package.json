@@ -7,8 +7,7 @@
     "build": "npm run generate:translations && ng build",
     "update:otter": "ng update @o3r/core",
     "start:no-translation": "ng serve",
-    "generate:translations:dev": "ng run todo-ui:generate-translations",
-    "generate:translations": "ng run todo-ui:generate-translations:production",
+    "generate:translations": "ng run todo-ui:generate-translations",
     "cms-adapters:localizations": "ng run todo-ui:extract-translations",
     "cms-adapters:metadata": "npm run cms-adapters:localizations"
   },

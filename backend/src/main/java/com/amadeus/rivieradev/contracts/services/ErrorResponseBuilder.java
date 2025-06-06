@@ -1,4 +1,4 @@
-package com.amadeus.rivieradev.contracts;
+package com.amadeus.rivieradev.contracts.services;
 
 import jakarta.ws.rs.core.Response;
 

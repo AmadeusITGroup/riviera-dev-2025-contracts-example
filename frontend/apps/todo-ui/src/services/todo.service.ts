@@ -51,7 +51,7 @@ export class TodoService {
         optimisticUpdateFn: (title) => (old) => (old || []).concat({
           id: 'tmp-id',
           title,
-          createdAt: Date.now()
+          createdAt: new Date().toISOString()
         })
       },
       this.queryClient,
@@ -64,7 +64,10 @@ export class TodoService {
     ...mutationHelper<Todo, Todo, Todo[]>(
       {
         queryKey: 'todos',
-        optimisticUpdateFn: (newTodo) => (old) => old?.map((item) => item.id === newTodo.id ? { ...newTodo, completedAt: newTodo.status === 'done' ? Date.now() : undefined } : item)
+        optimisticUpdateFn: (newTodo) => (old) => old?.map((item) => item.id === newTodo.id
+          ? { ...newTodo, completedAt: newTodo.status === 'DONE' ? new Date().toISOString() : undefined }
+          : item
+        )
       },
       this.queryClient,
       this.alertService
@@ -104,7 +107,7 @@ export class TodoService {
     }
     this.updateMutation.mutate({
       ...item,
-      status: item.status === 'done' ? 'on_hold' : 'done'
+      status: item.status === 'DONE' ? 'ON_HOLD' : 'DONE'
     });
   }
 

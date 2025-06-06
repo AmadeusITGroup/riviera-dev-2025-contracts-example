@@ -10,4 +10,4 @@
 /**
  * Status of the todo
  */
-export type TodoStatus = 'on_hold' | 'working' | 'done';
+export type TodoStatus = 'ON_HOLD' | 'DONE';

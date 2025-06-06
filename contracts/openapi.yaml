@@ -4,6 +4,9 @@ info:
   title: To-do API
   description: OpenApi specification for a to-do API
   version: 1.0.0
+servers:
+  - url: http://localhost:8080
+    description: Local server
 tags: 
   - name: User
     description: Operations related to users
@@ -34,9 +37,8 @@ components:
     TodoStatus:
       type: string
       enum:
-        - on_hold
-        - working
-        - done
+        - ON_HOLD
+        - DONE
       description: Status of the todo
     BaseTodo:
       type: object
@@ -66,11 +68,11 @@ components:
             id:
               $ref: '#/components/schemas/Id'
             createdAt:
-              type: number
+              type: string
               format: date-time
               description: Creation timestamp of the todo
             completedAt:
-              type: number
+              type: string
               format: date-time
               description: Completion timestamp of the todo
 

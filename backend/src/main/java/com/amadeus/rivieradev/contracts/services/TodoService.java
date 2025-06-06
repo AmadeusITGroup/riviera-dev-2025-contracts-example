@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import com.amadeus.rivieradev.contracts.ErrorResponseBuilder;
 import com.amadeus.rivieradev.contracts.api.beans.BaseTodo;
 import com.amadeus.rivieradev.contracts.api.beans.Todo;
 import com.amadeus.rivieradev.contracts.api.beans.TodoStatus;
@@ -42,9 +41,9 @@ public class TodoService {
             todo.setId(UUID.randomUUID().toString());
             todo.setCreatedAt(now);
             todo.setTitle(todoTitle);
-            todo.setStatus(TodoStatus.on_hold);
+            todo.setStatus(TodoStatus.ON_HOLD);
             if (index == 0) {
-                todo.setStatus(TodoStatus.done);
+                todo.setStatus(TodoStatus.DONE);
                 todo.setCompletedAt(now);
             }
             if (index == 1) {
@@ -81,10 +80,10 @@ public class TodoService {
             throw new WebApplicationException(response);
         }
         todo.setDueDate(data.getDueDate());
-        if (data.getStatus() == TodoStatus.done) {
+        if (data.getStatus() == TodoStatus.DONE) {
             todo.setCompletedAt(now);
         }
-        todo.setStatus(data.getStatus() != null ? data.getStatus() : TodoStatus.on_hold);
+        todo.setStatus(data.getStatus() != null ? data.getStatus() : TodoStatus.ON_HOLD);
         TODOS.put(todo.getId(), todo);
         return todo;
     }
@@ -105,10 +104,10 @@ public class TodoService {
             );
             throw new WebApplicationException(response);
         }
-        if (todo.getStatus() == TodoStatus.done && data.getStatus() != TodoStatus.done) {
+        if (todo.getStatus() == TodoStatus.DONE && data.getStatus() != TodoStatus.DONE) {
             todo.setCompletedAt(null);
         }
-        if (data.getStatus() == TodoStatus.done) {
+        if (data.getStatus() == TodoStatus.DONE) {
             todo.setCompletedAt(new Date());
         }
         todo.setTitle(data.getTitle());
@@ -121,7 +120,7 @@ public class TodoService {
             throw new WebApplicationException(response);
         }
         todo.setDueDate(data.getDueDate());
-        todo.setStatus(data.getStatus() != null ? data.getStatus() : TodoStatus.on_hold);
+        todo.setStatus(data.getStatus() != null ? data.getStatus() : TodoStatus.ON_HOLD);
         TODOS.put(todoId, todo);
         return todo;
     }

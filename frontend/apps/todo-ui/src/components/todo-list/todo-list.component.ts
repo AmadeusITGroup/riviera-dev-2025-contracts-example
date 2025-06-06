@@ -24,8 +24,8 @@ export class TodoListComponent implements Translatable<TodoListTranslation> {
   @Input()
   @Localization('./todo-list.localization.json')
   public translations: TodoListTranslation = translations;
-  public readonly doneTodos = computed(() => this.todos().filter((item) => item.status === 'done'));
-  public readonly remainingTodos = computed(() => this.todos().filter((item) => item.status !== 'done'));
+  public readonly doneTodos = computed(() => this.todos().filter((item) => item.status === 'DONE'));
+  public readonly remainingTodos = computed(() => this.todos().filter((item) => item.status !== 'DONE'));
   public readonly todos = input.required<Todo[]>();
   public readonly todoService = inject(TodoService);
 }

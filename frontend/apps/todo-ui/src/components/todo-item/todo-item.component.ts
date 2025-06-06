@@ -58,7 +58,7 @@ export class TodoItemComponent implements DynamicConfigurableWithSignal<TodoItem
   });
   private readonly isStatusModeSideBorder = computed(() => this.configSignal().statusMode === 'side-border');
   private readonly dueDate = computed(() => this.todo().dueDate);
-  public readonly isDone = computed(() => this.todo().status === 'done');
+  public readonly isDone = computed(() => this.todo().status === 'DONE');
   public readonly user = computed(() => this.userService.users()?.find(user => user.id === this.todo().user));
   public readonly remove = output<void>();
   public readonly todo = input.required<Todo>();

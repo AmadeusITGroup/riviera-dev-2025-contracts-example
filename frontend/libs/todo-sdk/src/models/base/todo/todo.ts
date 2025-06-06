@@ -20,9 +20,9 @@ export interface Todo {
   /** Unique identifier */
   id: string;
   /** Creation timestamp of the todo */
-  createdAt: number;
+  createdAt: string;
   /** Completion timestamp of the todo */
-  completedAt?: number;
+  completedAt?: string;
 }
 
 

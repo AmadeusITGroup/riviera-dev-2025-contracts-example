@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import com.amadeus.rivieradev.contracts.services.ErrorResponseBuilder;
 import com.amadeus.rivieradev.contracts.services.TodoService;
 import com.amadeus.rivieradev.contracts.api.UsersResource;
 import com.amadeus.rivieradev.contracts.api.beans.BaseUser;
