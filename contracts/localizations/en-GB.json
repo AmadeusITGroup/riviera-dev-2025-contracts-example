@@ -2,7 +2,7 @@
   "app-root.addNewItem": "Add item",
   "app-root.pageTitle": "Todo List",
   "app-todo-item.assignedToLabel": "Assigned to:",
-  "app-todo-item.completedAt": "Completed at:",
+  "app-todo-item.completedAt": "Completed at: {date}",
   "app-todo-item.deleteLabel": "Delete",
   "app-todo-item.dueDate": "Due date: {date}",
   "app-todo-item.toggleDatepickerAxLabel": "Toggle datepicker",

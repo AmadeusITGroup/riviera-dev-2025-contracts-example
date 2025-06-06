@@ -1,7 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/AmadeusITGroup/otter/main/packages/%40o3r/localization/schemas/localization.schema.json",
   "app-todo-item.completedAt": {
-    "defaultValue": "Completed at:",
+    "defaultValue": "Completed at: {date}",
     "description": "Completed at label"
   },
   "app-todo-item.dueDate": {
