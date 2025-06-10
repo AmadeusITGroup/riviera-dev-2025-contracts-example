@@ -1,0 +1,5 @@
+{
+    "files.readonlyInclude": {
+        "*frontend/apps/**/styles/*.vars.scss": true
+    }
+}

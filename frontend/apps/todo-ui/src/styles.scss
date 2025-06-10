@@ -1,6 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+@use './styles/theme.vars';
+@use './styles/mapping';
 @import url('@design-factory/design-factory/design-factory.css');
 
 .card:not(:hover) {
     box-shadow: none;
+}
+
+.border-success {
+  border-color: var(--df-success-500) !important;
+}
+
+.border-warning {
+  border-color: var(--df-warn-500) !important;
 }
