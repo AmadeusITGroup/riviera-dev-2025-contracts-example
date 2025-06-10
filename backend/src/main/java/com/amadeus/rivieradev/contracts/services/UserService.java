@@ -6,9 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import com.amadeus.rivieradev.contracts.api.UsersResource;
-import com.amadeus.rivieradev.contracts.api.beans.BaseUser;
-import com.amadeus.rivieradev.contracts.api.beans.User;
+import com.amadeus.rivieradev.contracts.api.models.BaseUser;
+import com.amadeus.rivieradev.contracts.api.models.User;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;

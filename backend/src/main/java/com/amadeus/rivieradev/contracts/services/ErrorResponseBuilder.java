@@ -2,7 +2,7 @@ package com.amadeus.rivieradev.contracts.services;
 
 import jakarta.ws.rs.core.Response;
 
-import com.amadeus.rivieradev.contracts.api.beans.Error;
+import com.amadeus.rivieradev.contracts.api.models.Error;
 
 public final class ErrorResponseBuilder {
     public static Response build(Response.Status status, String message) {

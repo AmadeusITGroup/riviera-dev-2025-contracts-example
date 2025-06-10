@@ -120,10 +120,10 @@ export class TodoApi implements Api {
     let tokenizedUrl;
     if (this.client.options.enableParameterSerialization) {
       const pathParamsProperties = this.client.getPropertiesFromData(data, ['todoId']);
-      const pathParamSerialization = { todoId: { explode: false, style: 'simple' } }
+      const pathParamSerialization = { todoId: { explode: false, style: 'simple' } };
       const serializedPathParams = this.client.serializePathParams(pathParamsProperties, pathParamSerialization);
-      basePath = `${this.client.options.basePath}/todos/${serializedPathParams['todoId']}`
-      tokenizedUrl = `${this.client.options.basePath}/todos/${this.piiParamTokens['todoId'] || serializedPathParams['todoId']}`
+      basePath = `${this.client.options.basePath}/todos/${serializedPathParams['todoId']}`;
+      tokenizedUrl = `${this.client.options.basePath}/todos/${this.piiParamTokens['todoId'] || serializedPathParams['todoId']}`;
     } else {
       basePath = `${this.client.options.basePath}/todos/${data['todoId']}`;
       tokenizedUrl = `${this.client.options.basePath}/todos/${this.piiParamTokens['todoId'] || data['todoId']}`;
@@ -227,10 +227,10 @@ export class TodoApi implements Api {
     let tokenizedUrl;
     if (this.client.options.enableParameterSerialization) {
       const pathParamsProperties = this.client.getPropertiesFromData(data, ['todoId']);
-      const pathParamSerialization = { todoId: { explode: false, style: 'simple' } }
+      const pathParamSerialization = { todoId: { explode: false, style: 'simple' } };
       const serializedPathParams = this.client.serializePathParams(pathParamsProperties, pathParamSerialization);
-      basePath = `${this.client.options.basePath}/todos/${serializedPathParams['todoId']}`
-      tokenizedUrl = `${this.client.options.basePath}/todos/${this.piiParamTokens['todoId'] || serializedPathParams['todoId']}`
+      basePath = `${this.client.options.basePath}/todos/${serializedPathParams['todoId']}`;
+      tokenizedUrl = `${this.client.options.basePath}/todos/${this.piiParamTokens['todoId'] || serializedPathParams['todoId']}`;
     } else {
       basePath = `${this.client.options.basePath}/todos/${data['todoId']}`;
       tokenizedUrl = `${this.client.options.basePath}/todos/${this.piiParamTokens['todoId'] || data['todoId']}`;

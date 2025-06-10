@@ -1,16 +1,18 @@
 package com.amadeus.rivieradev.contracts.services;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import com.amadeus.rivieradev.contracts.api.beans.BaseTodo;
-import com.amadeus.rivieradev.contracts.api.beans.Todo;
-import com.amadeus.rivieradev.contracts.api.beans.TodoStatus;
+import com.amadeus.rivieradev.contracts.api.models.BaseTodo;
+import com.amadeus.rivieradev.contracts.api.models.Todo;
+import com.amadeus.rivieradev.contracts.api.models.TodoStatus;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -22,8 +24,6 @@ import jakarta.ws.rs.core.Response;
 public class TodoService {
     @Inject
     UserService userService;
-
-    private static final String DATE_FORMAT = "^[0-9]{4}-[0-9]{2}-[0-9]{2}$";
 
     private static final Map<String, Todo> TODOS = new HashMap<>();
 
@@ -39,7 +39,7 @@ public class TodoService {
             "Start a new project with contracts"
         );
         int index = 0;
-        Date now = new Date();
+        Instant now = Instant.now();
         for(Iterator<String> it = defaultTodoTitles.iterator(); it.hasNext(); index++) {
             String todoTitle = it.next();
             Todo todo = new Todo();
@@ -53,11 +53,11 @@ public class TodoService {
             }
             if (index == 1) {
                 /** Start of the RivieraDev conference */
-                todo.setDueDate("2025-07-07");
+                todo.setDueDate(LocalDate.of(2025, Month.JULY, 7));
             }
             if (index == 2) {
                 /** End of the RivieraDev conference */
-                todo.setDueDate("2025-07-09");
+                todo.setDueDate(LocalDate.of(2025, Month.JULY, 9));
             }
             TODOS.put(todo.getId(), todo);
         };
@@ -71,7 +71,7 @@ public class TodoService {
             );
             throw new WebApplicationException(response);
         }
-        Date now = new Date();
+        Instant now = Instant.now();
         Todo todo = new Todo();
         todo.setId(UUID.randomUUID().toString());
         todo.setCreatedAt(now);
@@ -89,13 +89,6 @@ public class TodoService {
                 throw new WebApplicationException(response);
             }
         }
-        if (data.getDueDate() != null && !data.getDueDate().matches(DATE_FORMAT)) {
-            Response response = ErrorResponseBuilder.build(
-                Response.Status.BAD_REQUEST,
-                "The format of dueDate does not respect yyyy-mm-dd"
-            );
-            throw new WebApplicationException(response);
-        }
         todo.setDueDate(data.getDueDate());
         if (data.getStatus() == TodoStatus.DONE) {
             todo.setCompletedAt(now);
@@ -105,7 +98,7 @@ public class TodoService {
         return todo;
     }
 
-    public Todo updateTodo(String todoId, com.amadeus.rivieradev.contracts.api.beans.@NotNull BaseTodo data) {
+    public Todo updateTodo(String todoId, @NotNull BaseTodo data) {
         if (TODOS.values().stream().anyMatch(todo -> !todo.getId().equals(todoId) && todo.getTitle().equals(data.getTitle()))) {
             Response response = ErrorResponseBuilder.build(
                 Response.Status.CONFLICT,
@@ -125,7 +118,7 @@ public class TodoService {
             todo.setCompletedAt(null);
         }
         if (data.getStatus() == TodoStatus.DONE) {
-            todo.setCompletedAt(new Date());
+            todo.setCompletedAt(Instant.now());
         }
         todo.setTitle(data.getTitle());
         
@@ -141,13 +134,6 @@ public class TodoService {
                 );
                 throw new WebApplicationException(response);
             }
-        }
-        if (data.getDueDate() != null && !data.getDueDate().matches(DATE_FORMAT)) {
-            Response response = ErrorResponseBuilder.build(
-                Response.Status.BAD_REQUEST,
-                "The format of dueDate does not respect yyyy-mm-dd"
-            );
-            throw new WebApplicationException(response);
         }
         todo.setDueDate(data.getDueDate());
         todo.setStatus(data.getStatus() != null ? data.getStatus() : TodoStatus.ON_HOLD);

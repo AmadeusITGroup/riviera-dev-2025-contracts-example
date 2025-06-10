@@ -51,11 +51,6 @@
               {
                 "glob": "**/*",
                 "input": "apps/todo-ui/public"
-              },
-              {
-                "glob": "**/*.json",
-                "input": "../contracts/localizations",
-                "output": "/localizations"
               }
             ],
             "styles": [
@@ -121,11 +116,6 @@
               {
                 "glob": "**/*",
                 "input": "apps/todo-ui/public"
-              },
-              {
-                "glob": "**/*.json",
-                "input": "../contracts/localizations",
-                "output": "/localizations"
               }
             ],
             "styles": [
@@ -138,8 +128,8 @@
           "builder": "@o3r/components:extractor",
           "options": {
             "tsConfig": "apps/todo-ui/tsconfig.app.json",
-            "configOutputFile": "../contracts/component.config.metadata.json",
-            "componentOutputFile": "../contracts/component.class.metadata.json",
+            "configOutputFile": "../contracts/generated/component.config.metadata.json",
+            "componentOutputFile": "../contracts/generated/component.class.metadata.json",
             "name": "todo-ui",
             "libraries": [],
             "placeholdersMetadataFilePath": "apps/todo-ui/placeholders.metadata.json",
@@ -158,7 +148,7 @@
             "assets": [
               "apps/todo-ui/src/**/i18n"
             ],
-            "outputPath": "../../../contracts/localizations"
+            "outputPath": "apps/todo-ui/public/localizations"
           }
         },
         "extract-translations": {
@@ -166,7 +156,7 @@
           "options": {
             "tsConfig": "apps/todo-ui/tsconfig.app.json",
             "libraries": [],
-            "outputFile": "../contracts/localization.metadata.json",
+            "outputFile": "../contracts/generated/localization.metadata.json",
             "strictMode": true
           }
         },
