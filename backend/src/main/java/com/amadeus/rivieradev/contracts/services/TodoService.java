@@ -13,20 +13,25 @@ import com.amadeus.rivieradev.contracts.api.beans.Todo;
 import com.amadeus.rivieradev.contracts.api.beans.TodoStatus;
 
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import jakarta.validation.constraints.NotNull;
 import jakarta.ws.rs.WebApplicationException;
 import jakarta.ws.rs.core.Response;
 
 @ApplicationScoped
 public class TodoService {
+    @Inject
+    UserService userService;
+
     private static final String DATE_FORMAT = "^[0-9]{4}-[0-9]{2}-[0-9]{2}$";
 
-    private static final Map<String, Todo> TODOS;
+    private static final Map<String, Todo> TODOS = new HashMap<>();
+
     /**
      * For demo purpose
      */
-    static {
-        TODOS = new HashMap<>();
+    @Inject
+    void onInit() {
         List<String> defaultTodoTitles = Arrays.asList(
             "Prepare the RivieraDev demo...",
             "Go to RivieraDev!",
@@ -71,7 +76,19 @@ public class TodoService {
         todo.setId(UUID.randomUUID().toString());
         todo.setCreatedAt(now);
         todo.setTitle(data.getTitle());
-        todo.setUser(data.getUser());
+        String userId = data.getUser();
+        if (userId != null) {
+            if (userService.getUserById(userId) != null) {
+                todo.setUser(userId);
+            } else {
+                Response response = ErrorResponseBuilder.build(
+                    Response.Status.BAD_REQUEST,
+                    "The user (" + userId + ") does not exist"
+
+                );
+                throw new WebApplicationException(response);
+            }
+        }
         if (data.getDueDate() != null && !data.getDueDate().matches(DATE_FORMAT)) {
             Response response = ErrorResponseBuilder.build(
                 Response.Status.BAD_REQUEST,
@@ -111,7 +128,20 @@ public class TodoService {
             todo.setCompletedAt(new Date());
         }
         todo.setTitle(data.getTitle());
-        todo.setUser(data.getUser());
+        
+        String userId = data.getUser();
+        if (userId != null) {
+            if (userService.getUserById(userId) != null) {
+                todo.setUser(userId);
+            } else {
+                Response response = ErrorResponseBuilder.build(
+                    Response.Status.BAD_REQUEST,
+                    "The user (" + userId + ") does not exist"
+
+                );
+                throw new WebApplicationException(response);
+            }
+        }
         if (data.getDueDate() != null && !data.getDueDate().matches(DATE_FORMAT)) {
             Response response = ErrorResponseBuilder.build(
                 Response.Status.BAD_REQUEST,
