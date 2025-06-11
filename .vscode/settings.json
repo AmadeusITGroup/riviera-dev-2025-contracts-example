@@ -1,5 +1,8 @@
 {
     "files.readonlyInclude": {
-        "*frontend/apps/**/styles/*.vars.scss": true
+        "generated/**": true
+    },
+    "files.readonlyExclude": {
+        "generated/README.md": true
     }
 }
