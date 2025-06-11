@@ -2,7 +2,7 @@
 export default {
   usesDtcg: true, // Use Design Token Standard format
 
-  // extracted from https://www.figma.com/design/JrDADDCPPDV6rl6jL5oHHn/Riviera-Dev-2015
+  // extracted from "../../Riviera Dev 2025.fig"
   source: [
     '../../../contracts/design-token/*.tokens.json'
   ],
