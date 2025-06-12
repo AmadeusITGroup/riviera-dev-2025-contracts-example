@@ -1,0 +1,62 @@
+{
+  // For more information, visit: https://go.microsoft.com/fwlink/?LinkId=733558
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build-java-sdk",
+      "command": "mvn",
+      "args": [
+        "package"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/generated/sdks/java-server-sdk"
+      },
+      "group": "build"
+    },
+    {
+      "label": "build-typescript-sdk",
+      "type": "npm",
+      "script": "build",
+      "path": "/generated/sdks/typescript-client-sdk",
+      "group": "build"
+    },
+    {
+      "label": "backend",
+      "command": "./mvnw",
+      "args": ["quarkus:dev"],
+      "isBackground": true,
+      "dependsOn": [
+        "build-java-sdk"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/backend"
+      }
+    },
+    {
+      "label": "theming",
+      "type": "npm",
+      "script": "start:theme",
+      "path": "frontend/apps/todo-ui",
+      "isBackground": true
+    },
+    {
+      "label": "todo-ui",
+      "type": "npm",
+      "script": "start",
+      "path": "frontend/apps/todo-ui",
+      "isBackground": true,
+      "dependsOn": [
+        "build-typescript-sdk"
+      ],
+    },
+    {
+      "label": "todo-app",
+      "dependsOn": [
+        "todo-ui",
+        "theming",
+        "backend"
+      ],
+      "dependsOrder": "parallel"
+    }
+  ]
+}
