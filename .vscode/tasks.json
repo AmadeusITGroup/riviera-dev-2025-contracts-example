@@ -6,7 +6,8 @@
       "label": "build-java-sdk",
       "command": "mvn",
       "args": [
-        "package"
+        "clean",
+        "install"
       ],
       "options": {
         "cwd": "${workspaceFolder}/generated/sdks/java-server-sdk"
