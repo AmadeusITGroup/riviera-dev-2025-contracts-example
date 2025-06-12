@@ -3,6 +3,28 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "install-typescript-sdk",
+      "command": "npm",
+      "args": [
+        "install"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/generated/sdks/typescript-client-sdk"
+      },
+      "group": "build"
+    },
+    {
+      "label": "install-todo-ui",
+      "command": "npm",
+      "args": [
+        "install"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/frontend"
+      },
+      "group": "build"
+    },
+    {
       "label": "build-java-sdk",
       "command": "mvn",
       "args": [
@@ -19,7 +41,10 @@
       "type": "npm",
       "script": "build",
       "path": "/generated/sdks/typescript-client-sdk",
-      "group": "build"
+      "group": "build",
+      "dependsOn": [
+        "install-typescript-sdk"
+      ]
     },
     {
       "label": "backend",
@@ -38,6 +63,9 @@
       "type": "npm",
       "script": "start:theme",
       "path": "frontend/apps/todo-ui",
+      "dependsOn": [
+        "install-todo-ui"
+      ],
       "isBackground": true
     },
     {
@@ -47,7 +75,8 @@
       "path": "frontend/apps/todo-ui",
       "isBackground": true,
       "dependsOn": [
-        "build-typescript-sdk"
+        "build-typescript-sdk",
+        "install-todo-ui"
       ],
     },
     {
