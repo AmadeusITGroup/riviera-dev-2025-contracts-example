@@ -48,9 +48,15 @@
             "tsConfig": "apps/todo-ui/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
+              "apps/todo-ui/src/assets",
               {
                 "glob": "**/*",
                 "input": "apps/todo-ui/public"
+              },
+              {
+                "glob": "**/*.metadata.json",
+                "input": "../contracts",
+                "output": "/metadata"
               }
             ],
             "styles": [

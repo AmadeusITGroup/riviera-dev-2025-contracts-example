@@ -1,0 +1,7 @@
+[{
+  "name": "TodoItemConfig",
+  "library": "todo-ui",
+  "config": {
+    "sideBorderMode": false
+  }
+}]

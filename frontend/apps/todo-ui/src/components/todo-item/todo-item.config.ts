@@ -8,11 +8,11 @@ export interface TodoItemConfig extends Configuration {
   /**
    * Display mode for the Todo item status
    */
-  statusMode: 'side-border' | 'line-through'
+  sideBorderMode: boolean
 }
 
 export const TODO_ITEM_DEFAULT_CONFIG: Readonly<TodoItemConfig> = {
-  statusMode: 'side-border'
+  sideBorderMode: false
 } as const;
 
 export const TODO_ITEM_CONFIG_ID = computeItemIdentifier('TodoItemConfig', 'todo-ui');
