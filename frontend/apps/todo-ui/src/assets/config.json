@@ -2,6 +2,6 @@
   "name": "TodoItemConfig",
   "library": "todo-ui",
   "config": {
-    "sideBorderMode": false
+    "sideBorderMode": true
   }
 }]

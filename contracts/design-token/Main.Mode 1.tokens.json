@@ -3,7 +3,7 @@
     "primary": {
       "default": {
         "$type": "color",
-        "$value": "#0c66e1"
+        "$value": "violet"
       }
     },
     "warn": {
@@ -21,7 +21,7 @@
     "danger": {
       "default": {
         "$type": "color",
-        "$value": "#df3127"
+        "$value": "green"
       }
     },
     "info": {
