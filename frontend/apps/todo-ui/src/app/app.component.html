@@ -9,7 +9,6 @@
       {{ alert }}
     </ngb-alert>
   }
-  @if (todoService.todos(); as todos) {
     <form class="mb-3">
       <div class="row g-2">
         <div class="col-sm-8">
@@ -23,6 +22,8 @@
         </div>
       </div>
     </form>
+  @if (todoService.todos(); as todos) {
+
     <app-todo-list [todos]="todos" />
   }
 </section>

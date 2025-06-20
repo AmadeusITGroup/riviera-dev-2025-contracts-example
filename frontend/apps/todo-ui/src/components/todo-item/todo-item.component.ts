@@ -46,7 +46,7 @@ export class TodoItemComponent implements DynamicConfigurableWithSignal<TodoItem
       if (this.isDone()) {
         classes.push('border-success');
       }
-      else if (dueDate && new Date().toISOString().slice(0, 10) >= dueDate) {
+      else if (dueDate && (new Date()).getTime() > dueDate) {
         classes.push('border-warning');
       }
       else {
@@ -70,11 +70,11 @@ export class TodoItemComponent implements DynamicConfigurableWithSignal<TodoItem
   @O3rConfig()
   public readonly configSignal = configSignal(this.config, TODO_ITEM_CONFIG_ID, TODO_ITEM_DEFAULT_CONFIG);
   public changeDueDate(event: NgbDate) {
-    this.todoService.changeDueDate(this.todo().id, [
+    this.todoService.changeDueDate(this.todo().id, new Date([
       event.year,
       `${event.month}`.padStart(2, '0'),
       `${event.day}`.padStart(2, '0')
-    ].join('-'));
+    ].join('-')).getTime());
   }
   public changeAssignedTo(userId: string) {
     this.todoService.changeAssignedTo(this.todo().id, userId);

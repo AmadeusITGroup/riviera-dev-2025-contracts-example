@@ -47,8 +47,7 @@ components:
           type: string
           description: ID of the user who owns the todo
         dueDate:
-          type: string
-          format: date
+          type: number
           description: Due date of the todo
         title:
           type: string
@@ -90,7 +89,7 @@ components:
         - message
 
 paths:
-  /todos:
+  /tout-doux:
     post:
       tags:
         - Todo
@@ -146,7 +145,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 
-  /todos/{todoId}:
+  /tout-doux/{todoId}:
     put:
       tags:
         - Todo

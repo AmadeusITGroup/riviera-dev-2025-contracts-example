@@ -12,7 +12,7 @@ export interface Todo {
   /** ID of the user who owns the todo */
   user?: string;
   /** Due date of the todo */
-  dueDate?: string;
+  dueDate?: number;
   /** Title of the todo */
   title: string;
   /** @see TodoStatus */

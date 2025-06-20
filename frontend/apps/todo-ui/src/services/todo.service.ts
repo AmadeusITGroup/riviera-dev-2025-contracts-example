@@ -120,7 +120,7 @@ export class TodoService {
     this.deleteMutation.mutate(id);
   }
 
-  public changeDueDate(id: string, dueDate: string) {
+  public changeDueDate(id: string, dueDate: number) {
     const item = this.todos()?.find(item => item.id === id);
     if (!item) {
       this.alertService.add(`Todo with id ${id} not found`);
