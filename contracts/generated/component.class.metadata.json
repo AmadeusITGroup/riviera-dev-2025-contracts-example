@@ -2,7 +2,7 @@
   {
     "library": "todo-ui",
     "name": "AppComponent",
-    "path": "apps/todo-ui/src/app/app.component.ts",
+    "path": "apps\\todo-ui\\src\\app\\app.component.ts",
     "selector": "app-root",
     "type": "PAGE",
     "linkableToRuleset": false,
@@ -15,7 +15,7 @@
   {
     "library": "todo-ui",
     "name": "TodoItemComponent",
-    "path": "apps/todo-ui/src/components/todo-item/todo-item.component.ts",
+    "path": "apps\\todo-ui\\src\\components\\todo-item\\todo-item.component.ts",
     "selector": "app-todo-item",
     "type": "EXPOSED_COMPONENT",
     "config": {
@@ -36,7 +36,7 @@
   {
     "library": "todo-ui",
     "name": "TodoListComponent",
-    "path": "apps/todo-ui/src/components/todo-list/todo-list.component.ts",
+    "path": "apps\\todo-ui\\src\\components\\todo-list\\todo-list.component.ts",
     "selector": "app-todo-list",
     "type": "COMPONENT",
     "linkableToRuleset": false,

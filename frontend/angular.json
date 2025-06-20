@@ -55,7 +55,7 @@
               },
               {
                 "glob": "**/*.metadata.json",
-                "input": "../contracts",
+                "input": "../contracts/generated",
                 "output": "/metadata"
               }
             ],

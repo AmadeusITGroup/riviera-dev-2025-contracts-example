@@ -27,7 +27,7 @@ The repository is divided in 4 folders:
 ## How to run the project
 
 ### Backend
-> ![TIP]
+> [!TIP]
 > Pre-requisite:
 > - maven installed 
 > - Java version > 23
@@ -38,11 +38,11 @@ In the `generated/sdks/java-server-sdk` folder, run the command `mvn clean insta
 Once the SDK has been generated, you can launch your quarkus. 
 In the `backend` folder, run `./mvnw quarkus:dev`, your backend will be available locally at http://localhost:8080/q/dev/.
 
-> ![NOTE]
+> [!NOTE]
 > If at any point you need to regenerate the SDK, run the command `mvn generate` in the folder and rebuild the SDK.
  
 ### Frontend
-> ![TIP]
+> [!TIP]
 > Pre-requisite:
 > - node version > 20
 
@@ -50,11 +50,11 @@ Start with the generation of the typescript SDK.
 In the `generated/sdks/typescript-client-sdk` folder, run the command `npm install` and build the project with
 `npm run build`.
 
-> ![NOTE]
+> [!NOTE]
 > If at any point you need to regenerate the SDK, run the command `npm run spec:regen` in the folder and rebuild the SDK.
 
 Once the SDK has been build, you can run the web application.
-In the `frontend` folder, install the project with `npm install` and start the project with `npm start`.
+In the `frontend` folder, install the project with `npm install` and start the project with `npm run ng start`.
 
 ### VSCode
 If you code with VsCode, you can launch the task is available in the `.vscode/tasks.json` to run all these steps. 

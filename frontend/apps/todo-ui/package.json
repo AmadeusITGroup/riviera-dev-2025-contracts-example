@@ -11,7 +11,8 @@
     "generate:theme": "style-dictionary build -c config.mjs -p css",
     "start:theme": "onchange -i '../../../contracts/design-token/*.tokens.json' -- npm run generate:theme",
     "cms-adapters:localizations": "ng run todo-ui:extract-translations",
-    "cms-adapters:metadata": "npm run cms-adapters:localizations"
+    "cms-adapters:components": "ng run todo-ui:extract-components",
+    "cms-adapters:metadata": "npm run cms-adapters:localizations && npm run generate:theme && npm run cms-adapters:components"
   },
   "private": true,
   "dependencies": {

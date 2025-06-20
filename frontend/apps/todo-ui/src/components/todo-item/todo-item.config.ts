@@ -6,7 +6,7 @@ import {computeItemIdentifier} from '@o3r/core';
  */
 export interface TodoItemConfig extends Configuration {
   /**
-   * Display mode for the Todo item status
+   * Display side border on the right mode for the Todo item status
    */
   sideBorderMode: boolean
 }
