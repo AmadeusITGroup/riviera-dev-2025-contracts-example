@@ -1,8 +1,0 @@
-{
-    "files.readonlyInclude": {
-        "generated/**": true
-    },
-    "files.readonlyExclude": {
-        "generated/README.md": true
-    }
-}
