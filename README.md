@@ -46,7 +46,7 @@ In the `generated/sdks/java-server-sdk` folder, run the command `mvn clean insta
 Once the SDK has been generated, you can launch your quarkus.
 In the `backend` folder, run `./mvnw quarkus:dev`, your backend will be available locally at <http://localhost:8080/q/dev/>.
 
-> ![NOTE]
+> [!NOTE]
 > If at any point you need to regenerate the SDK, run the command `mvn generate` in the folder and rebuild the SDK.
 
 ### Frontend
