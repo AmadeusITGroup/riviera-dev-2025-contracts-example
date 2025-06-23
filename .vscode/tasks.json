@@ -3,18 +3,7 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "install-typescript-sdk",
-      "command": "npm",
-      "args": [
-        "install"
-      ],
-      "options": {
-        "cwd": "${workspaceFolder}/generated/sdks/typescript-client-sdk"
-      },
-      "group": "build"
-    },
-    {
-      "label": "install-todo-ui",
+      "label": "install-frontend",
       "command": "npm",
       "args": [
         "install"
@@ -25,25 +14,31 @@
       "group": "build"
     },
     {
-      "label": "build-java-sdk",
+      "label": "build-java",
       "command": "mvn",
       "args": [
         "clean",
         "install"
       ],
       "options": {
-        "cwd": "${workspaceFolder}/generated/sdks/java-server-sdk"
+        "cwd": "${workspaceFolder}/backend"
       },
       "group": "build"
     },
     {
-      "label": "build-typescript-sdk",
-      "type": "npm",
-      "script": "build",
-      "path": "/generated/sdks/typescript-client-sdk",
+      "label": "generate-typescript-sdk",
+      "command": "npm",
+      "args": [
+        "run",
+        "-w", "@riviera-dev-contracts/todo-sdk",
+        "spec:regen"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/frontend"
+      },
       "group": "build",
       "dependsOn": [
-        "install-typescript-sdk"
+        "install-frontend"
       ]
     },
     {
@@ -52,10 +47,10 @@
       "args": ["quarkus:dev"],
       "isBackground": true,
       "dependsOn": [
-        "build-java-sdk"
+        "build-java"
       ],
       "options": {
-        "cwd": "${workspaceFolder}/backend"
+        "cwd": "${workspaceFolder}/backend/server"
       }
     },
     {
@@ -64,7 +59,7 @@
       "script": "start:theme",
       "path": "frontend/apps/todo-ui",
       "dependsOn": [
-        "install-todo-ui"
+        "install-frontend"
       ],
       "isBackground": true
     },
@@ -75,8 +70,8 @@
       "path": "frontend/apps/todo-ui",
       "isBackground": true,
       "dependsOn": [
-        "build-typescript-sdk",
-        "install-todo-ui"
+        "generate-typescript-sdk",
+        "install-frontend"
       ],
     },
     {

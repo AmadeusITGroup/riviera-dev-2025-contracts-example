@@ -20,7 +20,7 @@ export default {
       files: [
         {
           format: 'css/variables',
-          destination: '../../../generated/styles/_theme.vars.scss'
+          destination: 'src/styles/generated/_theme.vars.scss'
         }
       ]
     }

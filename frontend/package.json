@@ -97,7 +97,6 @@
   },
   "workspaces": [
     "libs/*",
-    "apps/*",
-    "../generated/sdks/typescript-client-sdk"
+    "apps/*"
   ]
 }
