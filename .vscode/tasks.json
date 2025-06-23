@@ -44,7 +44,11 @@
     {
       "label": "backend",
       "command": "./mvnw",
-      "args": ["quarkus:dev"],
+      "args": [
+        "quarkus:dev",
+        "-pl",
+        "server"
+      ],
       "isBackground": true,
       "dependsOn": [
         "build-java"
