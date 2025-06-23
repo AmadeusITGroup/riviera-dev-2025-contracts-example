@@ -69,4 +69,5 @@ In the `frontend` folder, install the project with `npm install` and start the p
 ### VSCode
 
 If you code with VsCode, you can run locally the project with the Task Launcher `start` or run the task `todo-app`. It will completely setup and run locally the application.
-> [!TIP] All different tasks are available in `.vscode/tasks.json`.
+> [!TIP]
+> All different tasks are available in `.vscode/tasks.json`.
