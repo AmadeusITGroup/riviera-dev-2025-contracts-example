@@ -8,7 +8,7 @@
   </parent>
 
   <groupId>com.amadeus.rivieradev.contracts</groupId>
-  <artifactId>java-server-sdk</artifactId>  
+  <artifactId>sdk</artifactId>
   <version>1.0.0-SNAPSHOT</version>
 
   <properties>
