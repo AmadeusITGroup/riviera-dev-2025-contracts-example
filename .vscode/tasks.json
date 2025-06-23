@@ -50,7 +50,7 @@
         "build-java"
       ],
       "options": {
-        "cwd": "${workspaceFolder}/backend/server"
+        "cwd": "${workspaceFolder}/backend"
       }
     },
     {
