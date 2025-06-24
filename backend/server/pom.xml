@@ -48,7 +48,7 @@
         </dependency>
         <dependency>
             <groupId>com.amadeus.rivieradev.contracts</groupId>
-            <artifactId>java-server-sdk</artifactId>
+            <artifactId>sdk</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
