@@ -31,7 +31,7 @@
       "args": [
         "run",
         "-w", "@riviera-dev-contracts/todo-sdk",
-        "spec:regen"
+        "sdk:generate"
       ],
       "options": {
         "cwd": "${workspaceFolder}/frontend"
@@ -61,7 +61,7 @@
       "label": "theming",
       "type": "npm",
       "script": "start:theme",
-      "path": "frontend/apps/todo-ui",
+      "path": "frontend",
       "dependsOn": [
         "install-frontend"
       ],
@@ -71,12 +71,12 @@
       "label": "todo-ui",
       "type": "npm",
       "script": "start",
-      "path": "frontend/apps/todo-ui",
+      "path": "frontend",
       "isBackground": true,
       "dependsOn": [
         "generate-typescript-sdk",
         "install-frontend"
-      ],
+      ]
     },
     {
       "label": "todo-app",

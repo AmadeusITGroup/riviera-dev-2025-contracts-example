@@ -1,8 +1,16 @@
-/* For IDE usage only */
 {
   "extends": "../../tsconfig.json",
-  "references": [
-    {"path": "./tsconfig.app.json"},
-    {"path": "./tsconfig.spec.json"}
+  "compilerOptions": {
+    "outDir": "./dist",
+    "types": []
+  },
+  "include": [
+    "./src/**/*.ts"
+  ],
+  "exclude": [
+    "**/*.spec.ts",
+    "**/fixture/",
+    "**/*.fixture.ts",
+    "**/fixtures.ts"
   ]
 }

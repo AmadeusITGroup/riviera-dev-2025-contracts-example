@@ -1,1 +1,1 @@
-This folder contains generated contracts from the code. 
+This folder contains contracts that have been generated from the code. 

@@ -45,7 +45,7 @@
               "zone.js",
               "@angular/localize/init"
             ],
-            "tsConfig": "apps/todo-ui/tsconfig.app.json",
+            "tsConfig": "apps/todo-ui/tsconfig.json",
             "inlineStyleLanguage": "scss",
             "assets": [
               "apps/todo-ui/src/assets",
@@ -109,36 +109,14 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n"
         },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
-            "tsConfig": "apps/todo-ui/tsconfig.spec.json",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "apps/todo-ui/public"
-              }
-            ],
-            "styles": [
-              "apps/todo-ui/src/styles.scss"
-            ],
-            "scripts": []
-          }
-        },
         "extract-components": {
           "builder": "@o3r/components:extractor",
           "options": {
-            "tsConfig": "apps/todo-ui/tsconfig.app.json",
+            "tsConfig": "apps/todo-ui/tsconfig.json",
             "configOutputFile": "../contracts/generated/component.config.metadata.json",
             "componentOutputFile": "../contracts/generated/component.class.metadata.json",
             "name": "todo-ui",
             "libraries": [],
-            "placeholdersMetadataFilePath": "apps/todo-ui/placeholders.metadata.json",
             "exposedComponentSupport": true
           }
         },
@@ -160,7 +138,7 @@
         "extract-translations": {
           "builder": "@o3r/localization:extractor",
           "options": {
-            "tsConfig": "apps/todo-ui/tsconfig.app.json",
+            "tsConfig": "apps/todo-ui/tsconfig.json",
             "libraries": [],
             "outputFile": "../contracts/generated/localization.metadata.json",
             "strictMode": true
@@ -195,22 +173,10 @@
       "sourceRoot": "libs/todo-sdk/src",
       "prefix": "sdk",
       "architect": {
-        "build": {
+        "generate": {
           "builder": "@o3r/core:run-script",
           "options": {
-            "script": "build"
-          }
-        },
-        "lint": {
-          "builder": "@o3r/core:run-script",
-          "options": {
-            "script": "lint"
-          }
-        },
-        "test": {
-          "builder": "@o3r/core:run-script",
-          "options": {
-            "script": "test"
+            "script": "sdk:generate"
           }
         }
       }

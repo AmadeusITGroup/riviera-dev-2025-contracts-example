@@ -7,7 +7,7 @@
     "type": "EXPOSED_COMPONENT",
     "properties": [
       {
-        "description": "Display mode for the Todo item status",
+        "description": "Display side border on the right mode for the Todo item status",
         "restrictionKeys": [],
         "label": "side Border Mode",
         "name": "sideBorderMode",

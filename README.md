@@ -44,7 +44,7 @@ Once the SDK has been generated, you can launch your Quarkus.
 In the `backend` folder, run `./mvnw quarkus:dev`, your backend will be available locally at <http://localhost:8080/>.
 
 > [!NOTE]
-> If at any point you need to re-generate the SDK, run the command `mvn clean install` in the folder and re-start your Quarkus.
+> If at any point you need to re-generate the SDK, run the command `mvn generate` in the folder and re-start your Quarkus.
 
 ### Frontend
 
@@ -53,15 +53,12 @@ In the `backend` folder, run `./mvnw quarkus:dev`, your backend will be availabl
 >
 > - node version > 20
 
-Start with the generation of the typescript SDK.
-In the `frontend` folder, run the command `npm install` and generated the SDK with
-`npm run -w @riviera-dev-contracts/todo-sdk spec:regen`.
-
-Once the SDK has been generated, you can run the web application.
-In the `frontend` folder, start the project with `npm start`.
+For simplicity's sake, the web application todo-ui directly targets the sdk sources and does not require a build from 
+the sdk project.
+You just need to install the dependencies by running `npm install` and `npm start` in the `frontend` folder.
 
 > [!NOTE]
-> If at any point you need to re-generate the SDK, re-run the command `npm run -w @riviera-dev-contracts/todo-sdk spec:regen` in the `frontend` folder and re-start the application.
+> If at any point you need to re-generate the SDK, re-run the command `npm run -w @riviera-dev-contracts/todo-sdk sdk:generate` in the `frontend` folder and re-start the application.
 
 ### VSCode
 

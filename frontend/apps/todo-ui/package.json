@@ -1,19 +1,6 @@
 {
   "name": "todo-ui",
   "version": "0.0.0-placeholder",
-  "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "npm run generate:theme && npm run generate:translations && ng build",
-    "update:otter": "ng update @o3r/core",
-    "start:no-translation": "ng serve",
-    "generate:translations": "ng run todo-ui:generate-translations",
-    "generate:theme": "style-dictionary build -c config.mjs -p css",
-    "start:theme": "onchange -i '../../../contracts/design-token/*.tokens.json' -- npm run generate:theme",
-    "cms-adapters:localizations": "ng run todo-ui:extract-translations",
-    "cms-adapters:components": "ng run todo-ui:extract-components",
-    "cms-adapters:metadata": "npm run cms-adapters:localizations && npm run generate:theme && npm run cms-adapters:components"
-  },
   "private": true,
   "dependencies": {
     "@agnos-ui/angular-bootstrap": "~0.8.0",

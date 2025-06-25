@@ -3,10 +3,13 @@
   "version": "0.0.0-placeholder",
   "scripts": {
     "ng": "ng",
-    "build": "lerna run build",
-    "test": "lerna run test",
-    "lint": "lerna run lint",
-    "prepare": "husky"
+    "prepare": "husky",
+    "build": "npm run ng run todo-sdk:build && npm run build:ui",
+    "build:ui": "npm run generate:code && ng run todo-ui:build",
+    "extract:metadata": "ng run todo-ui:extract-components && ng run todo-ui:extract-translations",
+    "start": "npm run generate:theme && ng run todo-ui:run",
+    "generate:theme": "style-dictionary build -c apps/todo-ui/config.mjs -p css",
+    "start:theme": "onchange -i '../contracts/design-token/*.tokens.json' -- npm run generate:theme"
   },
   "private": true,
   "dependencies": {
@@ -39,6 +42,7 @@
     "@o3r/store-sync": "~12.2.5",
     "@o3r/testing": "~12.2.5",
     "@o3r/workspace": "~12.2.5",
+    "@openapitools/openapi-generator-cli": "2.20.2",
     "intl-messageformat": "~10.7.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
@@ -77,11 +81,11 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "lerna": "^8.1.7",
-    "lint-staged": "~15.0.0",
+    "lint-staged": "^15.5.2",
     "pixelmatch": "~6.0.0",
     "pngjs": "~7.0.0",
     "semver": "~7.5.2",
+    "style-dictionary": "~4.4.0",
     "ts-jest": "~29.3.0",
     "typescript": "~5.7.2"
   },

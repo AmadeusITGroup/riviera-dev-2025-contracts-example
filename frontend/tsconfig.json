@@ -17,14 +17,9 @@
     "declaration": true,
     "paths": {
       "@riviera-dev-contracts/todo-sdk": [
-        "libs/todo-sdk/dist",
         "libs/todo-sdk/src/index"
       ],
-      "@riviera-dev-contracts/todo-sdk/fixtures": [
-        "libs/todo-sdk/src/fixtures/jest"
-      ],
       "@riviera-dev-contracts/todo-sdk/*": [
-        "libs/todo-sdk/dist/*",
         "libs/todo-sdk/src/*"
       ]
     },

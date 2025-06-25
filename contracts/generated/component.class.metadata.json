@@ -14,6 +14,20 @@
   },
   {
     "library": "todo-ui",
+    "name": "TodoListComponent",
+    "path": "apps\\todo-ui\\src\\components\\todo-list\\todo-list.component.ts",
+    "selector": "app-todo-list",
+    "type": "COMPONENT",
+    "linkableToRuleset": false,
+    "localizationKeys": [
+      "$schema",
+      "app-todo-list.allCompleted",
+      "app-todo-list.remainingItems",
+      "app-todo-list.noItems"
+    ]
+  },
+  {
+    "library": "todo-ui",
     "name": "TodoItemComponent",
     "path": "apps\\todo-ui\\src\\components\\todo-item\\todo-item.component.ts",
     "selector": "app-todo-item",
